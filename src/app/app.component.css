@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://www.w3schools.com/w3css/4/w3.css');
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Raleway;
+}
+
+.no-user {
+  text-align: center;
+}
+
+.container-new{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.parent-container{
+  position: relative;
+  min-height: 100vh;
+}
+
+.main-content {
+  padding-bottom: 16rem;
+}
+
+.no-hover {
+  pointer-events: none;
+  color: grey;
+}
+
+.link-logout {
+  text-decoration: none;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color:#0d6afa;
+  transition: 0.5s ease;
+}
+
+.link-logout:hover {
+  color: #019fe0;
+}
+
+header,
+main{
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.active-link{
+  color: #0d6afa;
+}
+
+.page {
+  height: 1000%;
+}
+
+.active-page {
+  color: white;
+}
+
+.item {
+  color: white;
+}
+
+
+/* Navbar */
+
+.navbar {
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  background-color: #019fe0;
+}
+
+.brand-title {
+  font-size: 1.5rem;
+  margin: .5rem;
+}
+
+.navbar-links {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  list-style: none;
+}
+
+.navbar-links li a {
+  display: block;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 1rem;
+  transition: 0.6s;
+}
+
+.navbar-links li:hover {
+  transition: 0.6s;
+  /* color: rgb(120, 71, 255); */
+  color: rgb(248, 232, 0);
+  /* color: rgb(248, 211, 0); */
+  /* color: rgb(174, 248, 0); */
+  /* color: rgb(0, 248, 194); */
+  /* color: rgb(0, 240, 248); */
+  /* color: rgb(0, 248, 227); */
+}
+
+.toggle-button {
+  position: absolute;
+  top: .75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.toggle-button .bar {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+  .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .brand {
+    padding-bottom: 10px;
+  }
+
+  .toggle-button {
+      display: flex;
+  }
+
+  .navbar-links {
+      display: none;
+      width: 100%;
+  }
+
+  .navbar-links ul {
+      width: 100%;
+      flex-direction: column;
+  }
+
+  .navbar-links ul li {
+      text-align: center;
+  }
+
+  .navbar-links ul li a {
+      padding: .5rem 1rem;
+  }
+
+  .navbar-links.active {
+      display: flex;
+  }
+}
+
+
+
+
+
+/* Footer*/
+footer{
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111;
+    height: fit-content;
+    width: 100%;
+    padding: 30px 20px 20px 20px;
+    color: #fff;
+    text-align: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.footer-content{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+.footer-content h3{
+    font-size: 2.1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    line-height: 3rem;
+}
+
+
+.footer-p{
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 14px;
+    color: #cacdd2;
+    font-style:italic;
+}
+
+
+/*Footer bottom*/
+.footer-bottom{
+  background: #111111;
+  margin: 0;
+  width: 100vw;
+  height: 50vw;
+  text-align: center;
+}
+
+
+
+
+/*Copyrights*/
+.footer-bottom p{
+   float: left;
+   font-size: 14px;
+   word-spacing: 2px;
+   text-transform: capitalize;
+}
+.footer-bottom p a{
+  color:#44bae8;
+  font-size: 16px;
+  text-decoration: none;
+}
+.footer-bottom span{
+    text-transform: uppercase;
+    opacity: .4;
+    font-weight: 200;
+}
+
+
+
+@media (max-width:500px) {
+  .footer-menu ul{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* TEMPLATE SPECIFIC STYLES */
+
+  /* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("../assets/doc.jpeg");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
