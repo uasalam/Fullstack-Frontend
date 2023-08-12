@@ -7,58 +7,74 @@
                 <div class="card-body p-0">
                     <div class="row no-gutters">
                         <div class="col-lg-12">
-                            <div style="margin-left: 4%; margin-right: 4%;">
+                            <div class="p-5">
                                 <div class="mb-5">
-                                    <h3 class="h4 font-weight-bold text-theme">Registration</h3>
+                                    <h3 class="h4 font-weight-bold" style="color: #019fe0;">Registration</h3>
                                 </div>
 
-                                <h6 class="h5 mb-0">Welcome back!</h6>
-                                <p class="text-muted mt-2 mb-5">Enter your email address and password to access admin panel.</p>
-
-                                <!-- <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1">
-                                    </div>
-                                    <div class="form-group mb-5">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1">
-                                    </div>
-                                    <button type="submit" class="btn btn-theme">Login</button>
-                                    <a href="#l" class="forgot-link float-right text-primary">Forgot password?</a>
-                                </form> -->
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="p-5">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1">
-                                    </div>
-                                    <div class="form-group mb-5">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1">
-                                    </div>
-                                    <button type="submit" class="btn btn-theme">Login</button>
-                                    <a href="#l" class="forgot-link float-right text-primary">Forgot password?</a>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="p-5">
+                                <h6 class="h5 mb-0">Welcome to Angel Life Pharmacists!</h6>
+                                <p class="text-muted mt-2 mb-5">Register with us today and get orders delivered to your doorstep.</p>
 
                                 <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1">
+                                    <!-- Form Row-->
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (first name)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputFirstName">First name</label>
+                                            <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name">
+                                        </div>
+                                        <!-- Form Group (last name)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputLastName">Last name</label>
+                                            <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name">
+                                        </div>
                                     </div>
-                                    <div class="form-group mb-5">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1">
+                                    <!-- Form Row        -->
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (organization name)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputOrgName">NIC</label>
+                                            <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your nic number">
+                                        </div>
+                                        <!-- Form Group (location)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputLocation">Date of Birth</label>
+                                            <input class="form-control" id="inputLocation" type="date" >
+                                        </div>
                                     </div>
-                                    <button type="submit" class="btn btn-theme">Login</button>
-                                    <a href="#l" class="forgot-link float-right text-primary">Forgot password?</a>
+                                    <!-- Form Group (email address)-->
+                                    <div class="mb-3">
+                                        <label class="medium mb-3 bold" for="inputEmailAddress">Email address</label>
+                                        <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address">
+                                    </div>
+                                    <!-- Form Row-->
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (phone number)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputPhone">Phone number</label>
+                                            <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number">
+                                        </div>
+                                        <!-- Form Group (birthday)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputBirthday">Address</label>
+                                            <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your address">
+                                        </div>
+                                    </div>
+                                    <!-- Form Row        -->
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (password)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputOrgName">Password</label>
+                                            <input class="form-control" id="inputOrgName" autocomplete="off" type="password" placeholder="*******">
+                                        </div>
+                                        <!-- Form Group (confirm password)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputLocation">Confirm Password</label>
+                                            <input class="form-control" id="inputLocation" autocomplete="off" type="password" placeholder="*******">
+                                        </div>
+                                    </div>
+                                    <!-- Save changes button-->
+                                    <button style="margin-top: 3%;" class="btn btn-theme" type="button">Save changes</button>
                                 </form>
                             </div>
                         </div>
@@ -69,7 +85,7 @@
             </div>
             <!-- end card -->
 
-            <p class="text-muted text-center mt-3 mb-0">Don't have an account? <a href="register.html" class="text-primary ml-1">register</a></p>
+            <p class="text-muted text-center mt-3 mb-0">Already have an account? <a href="register.html" class="text-primary ml-1" routerLink="/login">Login</a></p>
 
             <!-- end row -->
 
@@ -78,3 +94,4 @@
     </div>
     <!-- Row -->
 </div>
+<br>

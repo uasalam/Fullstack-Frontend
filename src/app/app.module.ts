@@ -12,6 +12,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { CustomerOrderDetailsComponent } from './pages/customer-order-details/customer-order-details.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
+import { DetailComponent } from './components/detail/detail.component';
+import { SecurityComponent } from './components/security/security.component';
+import { EmployeeComponent } from './pages/employee/employee.component';
+import { CustomerComponent } from './pages/customer/customer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { RegistrationComponent } from './pages/registration/registration.compone
     ProfileComponent,
     CustomerOrderDetailsComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    DetailComponent,
+    SecurityComponent,
+    EmployeeComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
