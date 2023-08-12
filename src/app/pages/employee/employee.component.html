@@ -1,1 +1,120 @@
-<p>employee works!</p>
+<br><br><br>
+
+<div id="main-wrapper" class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-12">
+            <div class="card border-0">
+                <div class="card-body p-0">
+                    <div class="row no-gutters">
+                        <div class="col-lg-12">
+                            <div class="p-5">
+                                <div class="mb-5">
+                                    <h3 class="h4 font-weight-bold" style="color: #019fe0;">Employee Operation</h3>
+                                </div>
+
+                                <form class="search-form" #search ="ngForm">
+                                    <input class="search" type="text" name="search-customer" placeholder="Search Employee" required >
+                                    <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
+                                </form>
+
+                                <form>
+                                    <!-- Form Row-->
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (first name)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputFirstName">First name</label>
+                                            <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name">
+                                        </div>
+                                        <!-- Form Group (last name)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputLastName">Last name</label>
+                                            <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name">
+                                        </div>
+                                    </div>
+                                    <!-- Form Row        -->
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (organization name)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputOrgName">NIC</label>
+                                            <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your nic number">
+                                        </div>
+                                        <!-- Form Group (location)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputLocation">Date of Birth</label>
+                                            <input class="form-control" id="inputLocation" type="date" >
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (email address)-->
+                                    <div class="mb-3">
+                                        <label class="medium mb-3 bold" for="inputEmailAddress">Email address</label>
+                                        <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address">
+                                    </div>
+                                    <!-- Form Row-->
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (phone number)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputPhone">Phone number</label>
+                                            <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number">
+                                        </div>
+                                        <!-- Form Group (birthday)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputBirthday">Address</label>
+                                            <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your address">
+                                        </div>
+                                    </div>
+                                    <!-- Form Row        -->
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (confirm password)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputLocation">Access</label>
+                                            <select class="form-control" required name="customer-access" required>
+                                                <option value="" disabled selected>Set Access</option>
+                                                <option value="open">Open</option>
+                                                <option value="blocked">Blocked</option>
+                                            </select><br>
+                                        </div>
+                                        <!-- Form Group (password)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputOrgName">Password</label>
+                                            <input class="form-control" id="inputOrgName" autocomplete="off" type="password" placeholder="*******">
+                                        </div>                                        
+                                    </div>
+                                    <!-- Form Row        -->
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (type)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputLocation">Staff Type</label>
+                                            <select class="form-control" required name="customer-access" required>
+                                                <option value="" disabled selected>Set Staff Type</option>
+                                                <option value="open">Staff</option>
+                                                <option value="blocked">User</option>
+                                            </select><br>
+                                        </div>                                       
+                                    </div>
+                                    <!-- Save changes button-->
+                                    <div style=" height: fit-content; display: flex; justify-content: space-evenly; flex-direction: row; margin-top: 5%;  align-items: center; width: 100%; flex-wrap:wrap;">
+                                        <button class="btn form-button" type="button">Create Employee</button>
+                                        <button class="btn form-button" type="button">Update Employee</button>
+                                        <button class="btn form-button" type="button">Delete Employee</button>
+                                        <button class="btn form-button red" type="button">Cancel</button>
+                                    </div>                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+
+            <p class="text-muted text-center mt-3 mb-0"></p>
+
+            <!-- end row -->
+
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- Row -->
+</div>
+<br>

@@ -7,6 +7,8 @@ import { PlaceOrderComponent } from './pages/place-order/place-order.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CustomerOrdersComponent } from './pages/customer-orders/customer-orders.component';
 import { CustomerOrderDetailsComponent } from './pages/customer-order-details/customer-order-details.component';
+import { CustomerComponent } from './pages/customer/customer.component';
+import { EmployeeComponent } from './pages/employee/employee.component';
 
 const routes: Routes = [
   { path: 'home',   component: HomeComponent },
@@ -14,9 +16,10 @@ const routes: Routes = [
   { path: 'registration',   component: RegistrationComponent },
   { path: 'place-order',   component: PlaceOrderComponent },
   { path: 'profile',   component: ProfileComponent },
+  { path: 'customer',   component: CustomerComponent },
+  { path: 'employee',   component: EmployeeComponent },
   { path: 'customer/orders',   component: CustomerOrdersComponent },
   { path: 'customer/order/id',   component: CustomerOrderDetailsComponent },
-
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   //{ path: '**', component: PageNotFoundComponent }
 ]
