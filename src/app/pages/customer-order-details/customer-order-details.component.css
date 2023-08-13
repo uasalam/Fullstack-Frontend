@@ -20,3 +20,33 @@ a {
     color: #5465ff;
     text-decoration: none;
 }
+
+.text-theme {
+    color: #019fe0 !important;
+}
+
+
+  /* Button */
+
+  .form-button {
+    width: 200px;
+    height: 40px;
+    padding: 0px 10px;
+    font-size: 15px;
+    min-width: 200px;
+    background-color: #019fe0;
+    border-color: #019fe0;
+    color: #fff;
+    transition: 0.3s;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.84px;
+    min-width: 140px;
+    margin: 5px;
+  }
+
+  .form-button:hover {
+    background-color: #0d6afa;
+  }

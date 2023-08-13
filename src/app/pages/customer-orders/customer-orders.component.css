@@ -38,3 +38,48 @@ a {
     margin-left: 1rem;
     margin-right: 1rem;
 }
+
+
+/* SEARCH BOX */
+
+.search {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    padding: 5px 5px 5px 10px;
+    border: none;
+    border-radius: 30px;
+    float: left;
+  }
+  
+  .search:focus {
+    outline: none;
+  }
+  
+  .img-btn {
+    height: 40px;
+    border: none;
+    background-color: #fff;
+    margin-right: 5%;
+  }
+  
+  .search-form {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    margin-top: 3%;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    min-width: 290px;
+    width: 40%;
+    margin-bottom: 40px;
+  }
+  
+  .search-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    align-items: center;
+  }
