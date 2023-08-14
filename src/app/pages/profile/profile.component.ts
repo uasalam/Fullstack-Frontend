@@ -8,4 +8,27 @@ import { NgForm } from '@angular/forms';
 })
 export class ProfileComponent {
 
+  constructor(){}
+
+  detail = document.getElementById('detail');
+  security = document.getElementById('security');
+
+  showDetail = true;
+  component= "detail";
+
+  toggleWindow(){
+    this.showDetail = !this.showDetail;
+
+    if(this.component === "detail"){
+      this.component = "security";
+    }
+    else {
+      this.component = "detail";
+    }
+    // box.classList.add('bg-yellow', 'second-class', 'third-class');
+
+    // ✅ Remove class
+  // box.classList.remove('bg-yellow');
+  }
+
 }

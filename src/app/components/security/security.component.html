@@ -2,23 +2,32 @@
 <div class="card mb-4">
     <div class="card-header">Change Password</div>
     <div class="card-body p-5" >
-        <form>
+        <form #form="ngForm">
             <!-- Form Group (current password)-->
             <div class="mb-3">
                 <label class="medium mb-3 bold" for="currentPassword">Current Password</label>
-                <input class="form-control" id="currentPassword" type="password" placeholder="Enter current password">
+                <input *ngIf="!edit" class="form-control" autocomplete="new-password" readonly id="currentPassword" type="password" placeholder="Enter current password" name="oldpass" required [(ngModel)]="user.old_password">
+                <input *ngIf="edit" class="form-control" autocomplete="new-password"  id="currentPassword" type="password" placeholder="Enter current password" name="oldpass" required [(ngModel)]="user.old_password">
             </div>
             <!-- Form Group (new password)-->
             <div class="mb-3">
                 <label class="medium mb-3 bold" for="newPassword">New Password</label>
-                <input class="form-control" id="newPassword" type="password" placeholder="Enter new password">
+                <input *ngIf="!edit" class="form-control" id="newPassword" readonly autocomplete="new-password" type="password" placeholder="Enter new password" name="new" required [(ngModel)]="user.new_password">
+                <input *ngIf="edit" class="form-control" id="newPassword"  autocomplete="new-password" type="password" placeholder="Enter new password" name="new" required [(ngModel)]="user.new_password">
             </div>
             <!-- Form Group (confirm password)-->
             <div class="mb-3">
                 <label class="medium mb-3 bold" for="confirmPassword">Confirm Password</label>
-                <input class="form-control" id="confirmPassword" type="password" placeholder="Confirm new password">
+                <input *ngIf="!edit" class="form-control" id="confirmPassword" readonly autocomplete="new-password" type="password" placeholder="Confirm new password" name="retypenew" required [(ngModel)]="user.retype_password">
+                <input *ngIf="edit" class="form-control" id="confirmPassword" autocomplete="new-password" type="password" placeholder="Confirm new password" name="retypenew" required [(ngModel)]="user.retype_password">
             </div>
-            <button style="margin-top: 3%;" class="btn btn-theme" type="button">Save</button>
         </form>
+        <div *ngIf="edit" style=" height: fit-content; display: flex; justify-content: space-between; flex-direction: row; margin-top: 5%;  align-items: center; width: 100%; flex-wrap:wrap;">
+            <button class="btn form-button" type="button" (click)="saveNewPassword(form)">Save Changes</button>
+            <button class="btn form-button red" type="button" (click)="toggleEdit()">Cancel</button>
+        </div>
+        <button *ngIf="!edit" class="btn form-button" type="button" style="margin-top: 5%; " (click)="toggleEdit()">Update Password</button>  
     </div>
+    <app-success *ngIf="postSuccess" [success]="postSuccessMessage" (Event)="closeWindow($event)"></app-success>
+    <app-error *ngIf="postError" [error]="postErrorMessage" (Event)="closeWindow($event)"></app-error>
 </div>

@@ -93,3 +93,45 @@
 .bold {
     font-weight: 500;
 }
+
+
+/* Button */
+
+.form-button {
+    width: 200px;
+    height: 40px;
+    padding: 0px 10px;
+    font-size: 15px;
+    min-width: 200px;
+    background-color: #019fe0;
+    border-color: #019fe0;
+    color: #fff;
+    transition: 0.3s;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.84px;
+    min-width: 140px;
+    margin: 5px;
+  }
+
+  .form-button:hover {
+    background-color: #0d6afa;
+  }
+
+  .disabled {
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .red {
+    background-color: #e62154;
+    border: 1px solid #e62154;
+  }
+
+  .red:hover {
+    background-color: #f70042;
+    border: 1px solid #f70042;
+  }

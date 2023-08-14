@@ -33,6 +33,7 @@
         <div class="navbar-links" [ngClass]="{'active': isShowDiv}">
           <ul>
             <li routerLink="/home"><a>Home</a></li>
+            <li routerLink="/place-order"><a>Place Order</a></li>
             <li routerLink="/customer/orders"><a>Orders</a></li>
             <li routerLink="/employee"><a>Employee</a></li>
             <li routerLink="/customer"><a>Customer</a></li>
@@ -55,7 +56,7 @@
           <h3>Angel Life Pharmacists</h3>
           <p class="footer-p">Always laugh when you can. It is a cheap medicine</p>
           <div style="margin-bottom: 0.5%;">
-            <a class="link link-logout">Logout</a>
+            <a class="link link-logout" (click)="logout()">Logout</a>
           </div>
         </div>  
 

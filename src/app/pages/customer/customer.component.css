@@ -136,11 +136,11 @@
   }
   
   .red {
-    background-color: #ee6a6f;
-    border: 1px solid #ee6a6f;
+    background-color: #e62154;
+    border: 1px solid #e62154;
   }
 
   .red:hover {
-    background-color: #e23439;
-    border: 1px solid #e23439;
+    background-color: #f70042;
+    border: 1px solid #f70042;
   }

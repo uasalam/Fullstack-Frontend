@@ -3,18 +3,18 @@
     <div class="card mb-4">
         <div class="card-header ">Account Details</div>
         <div class="card-body p-5">
-            <form>
+            <form #form="ngForm">
                 <!-- Form Row-->
                 <div class="row gx-3 mb-3">
                     <!-- Form Group (first name)-->
                     <div class="col-md-6">
                         <label class="medium mb-3 bold" for="inputFirstName">First name</label>
-                        <input class="form-control" id="inputFirstName" type="text" placeholder="First name">
+                        <input class="form-control" readonly  id="inputFirstName" type="text" placeholder="First name" name="fname" required [(ngModel)]="user.first_name">
                     </div>
                     <!-- Form Group (last name)-->
                     <div class="col-md-6">
                         <label class="medium mb-3 bold" for="inputLastName">Last name</label>
-                        <input class="form-control" id="inputLastName" type="text" placeholder="Last name">
+                        <input class="form-control" readonly  id="inputLastName" type="text" placeholder="Last name" name="lname" required [(ngModel)]="user.last_name">
                     </div>
                 </div>
                 <!-- Form Row        -->
@@ -22,34 +22,42 @@
                     <!-- Form Group (organization name)-->
                     <div class="col-md-6">
                         <label class="medium mb-3 bold" for="inputOrgName">NIC</label>
-                        <input class="form-control" id="inputOrgName" type="text" placeholder="NIC number">
+                        <input class="form-control" readonly  id="inputOrgName" type="text" placeholder="NIC number" name="nic" required [(ngModel)]="user.nic">
                     </div>
                     <!-- Form Group (location)-->
                     <div class="col-md-6">
                         <label class="medium mb-3 bold" for="inputLocation">Date of Birth</label>
-                        <input class="form-control" id="inputLocation" type="text" placeholder="Date of Birth" >
+                        <input class="form-control" readonly  id="inputLocation" type="text" placeholder="Date of Birth" name="dob" required [(ngModel)]="user.dob">
                     </div>
                 </div>
                 <!-- Form Group (email address)-->
                 <div class="mb-3">
                     <label class="medium mb-3 bold" for="inputEmailAddress">Email address</label>
-                    <input class="form-control" id="inputEmailAddress" type="email" placeholder="Email address">
+                    <input *ngIf="!edit" class="form-control" readonly  id="inputEmailAddress" type="email" placeholder="Email address" name="email" required [(ngModel)]="user.email">
+                    <input *ngIf="edit" class="form-control"  id="inputEmailAddress" type="email" placeholder="Email address" name="email" required [(ngModel)]="user.email">
                 </div>
                 <!-- Form Row-->
                 <div class="row gx-3 mb-3">
                     <!-- Form Group (phone number)-->
                     <div class="col-md-6">
                         <label class="medium mb-3 bold" for="inputPhone">Phone number</label>
-                        <input class="form-control" id="inputPhone" type="tel" placeholder="Phone number">
+                        <input *ngIf="!edit" class="form-control" readonly id="inputPhone" type="tel" placeholder="Phone number" name="phone" required [(ngModel)]="user.mobile_no">
+                        <input *ngIf="edit" class="form-control"  id="inputPhone" type="tel" placeholder="Phone number" name="phone" required [(ngModel)]="user.mobile_no">
                     </div>
                     <!-- Form Group (birthday)-->
                     <div class="col-md-6">
                         <label class="medium mb-3 bold" for="inputBirthday">Address</label>
-                        <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Address">
+                        <input *ngIf="!edit" class="form-control" readonly id="inputBirthday" type="text" name="birthday" placeholder="Address" name="address" required [(ngModel)]="user.address">
+                        <input *ngIf="edit" class="form-control"  id="inputBirthday" type="text" name="birthday" placeholder="Address" name="address" required [(ngModel)]="user.address">
                     </div>
                 </div>
-                <!-- Save changes button-->
-                <button style="margin-top: 3%;" class="btn btn-theme" type="button">Save changes</button>
-            </form>
+                <div *ngIf="edit" style=" height: fit-content; display: flex; justify-content: space-between; flex-direction: row; margin-top: 5%;  align-items: center; width: 100%; flex-wrap:wrap;">
+                    <button class="btn form-button" type="button" (click)="saveProfile(form)">Save Changes</button>
+                    <button class="btn form-button red" type="button" (click)="toggleEdit()">Cancel</button>
+                </div>
+                <button *ngIf="!edit" class="btn form-button" type="button" style="margin-top: 5%; " (click)="toggleEdit()">Update Profile</button>         
+            </form>            
         </div>
+        <app-success *ngIf="postSuccess" [success]="postSuccessMessage" (Event)="closeWindow($event)"></app-success>
+        <app-error *ngIf="postError" [error]="postErrorMessage" (Event)="closeWindow($event)"></app-error>
     </div>

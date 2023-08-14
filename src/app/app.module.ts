@@ -16,6 +16,8 @@ import { DetailComponent } from './components/detail/detail.component';
 import { SecurityComponent } from './components/security/security.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { CustomerComponent } from './pages/customer/customer.component';
+import { SuccessComponent } from './components/success/success.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CustomerComponent } from './pages/customer/customer.component';
     DetailComponent,
     SecurityComponent,
     EmployeeComponent,
-    CustomerComponent
+    CustomerComponent,
+    SuccessComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

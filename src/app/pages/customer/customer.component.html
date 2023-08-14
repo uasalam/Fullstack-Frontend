@@ -13,22 +13,22 @@
                                 </div>
 
                                 <form class="search-form" #search ="ngForm">
-                                    <input class="search" type="text" name="search-customer" placeholder="Search Customer" required >
-                                    <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
+                                    <input class="search" type="text" name="search-customer" placeholder="Search Customer" required [(ngModel)]="body.email" >
+                                    <button class="img-btn" (click)="onFind(search)" type="submit"><img src="./../../assets/icon.svg">  </button>
                                 </form>
 
-                                <form>
+                                <form #form="ngForm">
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (first name)-->
                                         <div class="col-md-6">
                                             <label class="medium mb-3 bold" for="inputFirstName">First name</label>
-                                            <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name">
+                                            <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" name="fname" required [(ngModel)]="customerForm.first_name">
                                         </div>
                                         <!-- Form Group (last name)-->
                                         <div class="col-md-6">
                                             <label class="medium mb-3 bold" for="inputLastName">Last name</label>
-                                            <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name">
+                                            <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" name="lname" required [(ngModel)]="customerForm.last_name">
                                         </div>
                                     </div>
                                     <!-- Form Row        -->
@@ -36,30 +36,30 @@
                                         <!-- Form Group (organization name)-->
                                         <div class="col-md-6">
                                             <label class="medium mb-3 bold" for="inputOrgName">NIC</label>
-                                            <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your nic number">
+                                            <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your nic number" name="nic" required [(ngModel)]="customerForm.nic">
                                         </div>
                                         <!-- Form Group (location)-->
                                         <div class="col-md-6">
                                             <label class="medium mb-3 bold" for="inputLocation">Date of Birth</label>
-                                            <input class="form-control" id="inputLocation" type="date" >
+                                            <input class="form-control" id="inputLocation" type="date" name="dob" required [(ngModel)]="customerForm.dob">
                                         </div>
                                     </div>
                                     <!-- Form Group (email address)-->
                                     <div class="mb-3">
                                         <label class="medium mb-3 bold" for="inputEmailAddress">Email address</label>
-                                        <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address">
+                                        <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" name="email" required [(ngModel)]="customerForm.email">
                                     </div>
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (phone number)-->
                                         <div class="col-md-6">
                                             <label class="medium mb-3 bold" for="inputPhone">Phone number</label>
-                                            <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number">
+                                            <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" name="phone" required [(ngModel)]="customerForm.mobile_no">
                                         </div>
                                         <!-- Form Group (birthday)-->
                                         <div class="col-md-6">
                                             <label class="medium mb-3 bold" for="inputBirthday">Address</label>
-                                            <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your address">
+                                            <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your address" name="address" required [(ngModel)]="customerForm.address">
                                         </div>
                                     </div>
                                     <!-- Form Row        -->
@@ -67,7 +67,7 @@
                                         <!-- Form Group (confirm password)-->
                                         <div class="col-md-6">
                                             <label class="medium mb-3 bold" for="inputLocation">Access</label>
-                                            <select class="form-control" required name="customer-access" required>
+                                            <select class="form-control" required name="customer-access" [(ngModel)]="customerForm.access">
                                                 <option value="" disabled selected>Set Access</option>
                                                 <option value="open">Open</option>
                                                 <option value="blocked">Blocked</option>
@@ -76,18 +76,28 @@
                                         <!-- Form Group (password)-->
                                         <div class="col-md-6">
                                             <label class="medium mb-3 bold" for="inputOrgName">Password</label>
-                                            <input class="form-control" id="inputOrgName" autocomplete="off" type="password" placeholder="*******">
+                                            <input class="form-control" id="inputOrgName" autocomplete="new-password" type="password" placeholder="*******" name="pass" required [(ngModel)]="customerForm.password">
+                                        </div>                                        
+                                    </div>
+                                    <!-- Form Row        -->
+                                    <div class="row gx-3 mb-3" *ngIf="!find">
+                                        <!-- Form Group (confirm password)-->
+                                        <div class="col-md-6">
+                                            <label class="medium mb-3 bold" for="inputOrgName">Confirm Password</label>
+                                            <input class="form-control" id="inputOrgName" autocomplete="new-password" type="password" placeholder="*******" name="fname" required [(ngModel)]="confirmPassword">
                                         </div>                                        
                                     </div>
                                     <!-- Save changes button-->
                                     <div style=" height: fit-content; display: flex; justify-content: space-evenly; flex-direction: row; margin-top: 5%;  align-items: center; width: 100%; flex-wrap:wrap;">
-                                        <button class="btn form-button" type="button">Create Customer</button>
-                                        <button class="btn form-button" type="button">Update Customer</button>
-                                        <button class="btn form-button" type="button">Delete Customer</button>
-                                        <button class="btn form-button red" type="button">Cancel</button>
+                                        <button [ngClass]="{'disabled': find}" class="btn form-button" type="button" (click)="createCustomer(form)">Create Customer</button>
+                                        <button [ngClass]="{'disabled': !find}" class="btn form-button" type="button" (click)="updateCustomer(form)">Update Customer</button>
+                                        <button [ngClass]="{'disabled': !find}" class="btn form-button" type="button" (click)="deleteCustomer(form)">Delete Customer</button>
+                                        <button [ngClass]="{'disabled': !find}" class="btn form-button red" type="button" (click)="cancel()">Cancel</button>
                                     </div>                                    
-                                </form>
+                                </form>                                
                             </div>
+                            <app-success *ngIf="postSuccess" [success]="postSuccessMessage" (Event)="closeWindow($event)"></app-success>
+                            <app-error *ngIf="postError" [error]="postErrorMessage" (Event)="closeWindow($event)"></app-error>
                         </div>
                     </div>
 

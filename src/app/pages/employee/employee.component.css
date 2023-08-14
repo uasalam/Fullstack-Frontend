@@ -106,21 +106,7 @@
 
   /* Button */
 
-  .btn3d {
-    transition:all .08s linear;
-    position:relative;
-    outline:medium none;
-    -moz-outline-style:none;
-    border:0px;
-    margin-right:10px;
-    margin-top:15px;
-}
-.btn3d:focus {
-    outline:medium none;
-    -moz-outline-style:none;
-}
-
-.form-button {
+  .form-button {
     width: 200px;
     height: 40px;
     padding: 0px 10px;
@@ -150,11 +136,11 @@
   }
   
   .red {
-    background-color: #ee6a6f;
-    border: 1px solid #ee6a6f;
+    background-color: #e62154;
+    border: 1px solid #e62154;
   }
 
   .red:hover {
-    background-color: #e23439;
-    border: 1px solid #e23439;
+    background-color: #f70042;
+    border: 1px solid #f70042;
   }
