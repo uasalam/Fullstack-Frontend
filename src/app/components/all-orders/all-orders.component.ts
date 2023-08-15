@@ -14,7 +14,7 @@ export class AllOrdersComponent {
 
   @Input() orderId = "";
 
-  orders : any = [];
+  orders : any = []; 
 
   ngOnInit(): void {
     let type;
