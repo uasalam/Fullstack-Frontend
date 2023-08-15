@@ -13,9 +13,7 @@ export interface Order {
     products: [{
       id: string,
       item_name: string,
-      brand: String,
-      type: String,
-      price: string,
+      brand: string,
       product_total: string
     }] | []
 }

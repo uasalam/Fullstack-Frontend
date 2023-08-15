@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-lg-8">
           <!-- Details -->
-          <div class="card mb-4">
+          <div class="card mb-4" *ngIf="!editItem && !add">
             <div class="card-body">
               <div class="mb-4">
                 <h3 class="h4 font-weight-bold text-theme" style="margin-left: 1.3%;">Order Details</h3>
@@ -35,54 +35,111 @@
                     </ul>
                   </div>
                 </div> -->
-                <label *ngIf="!EditStatus" for="file_input_id" class="edit-link" (click)="editToggle()">Edit Order</label>
+                <label *ngIf="!EditStatus && order.status=='accepted' && order.products.length != 0" for="file_input_id" class="edit-link" (click)="editToggle()">Edit Order</label>
               </div>              
-              <label style="margin-left: 1.5%;" *ngIf="!EditStatus" for="file_input_id" class="edit-link">Add Item</label>
-              <table class="table table-borderless">
+              <label style="margin-left: 1.5%;" *ngIf="!EditStatus && order.status=='accepted'" for="file_input_id" class="edit-link" (click)="addItemToggle()">Add Item</label>
+              <table class="table table-borderless" *ngIf="order.products.length != 0">
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let item of order.products">
                     <td>
                       <div class="d-flex mb-2">
                         <div class="flex-lg-grow-1 ms-3">
-                          <h6 class="small mb-0"><a class="text-reset">Wireless Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
-                          <span class="small">Color: Black</span>
+                          <h6 class="small mb-0"><a class="text-reset" style="font-size: 17px;">{{item.item_name}}</a></h6>
+                          <span class="small">{{item.brand | titlecase}}</span>
                         </div>
                       </div>
                     </td>
                     <td></td>
-                    <td class="text-end" style="text-align: right;">Rs.70</td>
-                    <td *ngIf="EditStatus">
-                      <img style="height: 15px; cursor: pointer;" class="quantity-img" src="../../../assets/edit.svg">
+                    <td class="text-end" style="text-align: right;">Rs.{{item.product_total}}</td>
+                    <td *ngIf="EditStatus && order.status != 'rejected'" (click)="editItemMethod()">
+                      <img style="height: 15px; cursor: pointer;" class="quantity-img" (click)="editExisting(item.id)" src="../../../assets/edit.svg">
                     </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex mb-2">
-                        <div class="flex-lg-grow-1 ms-3">
-                          <h6 class="small mb-0"><a class="text-reset">Smartwatch IP68 Waterproof GPS and Bluetooth Support</a></h6>
-                          <span class="small">Color: White</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td class="text-end" style="text-align: right;">Rs.70</td>
                   </tr>
                 </tbody>
                 <tfoot>
                   <tr class="fw-bold">
                     <td colspan="2">TOTAL</td>
-                    <td class="text-end" style="text-align: right;">Rs.140</td>
+                    <td class="text-end" style="text-align: right;">Rs.{{order.total}}</td>
                   </tr>
                 </tfoot>
               </table>
-              <button *ngIf="order.status == 'pending' && !EditStatus" class="btn form-button" type="button">Accept Order</button>
-              <button *ngIf="order.status == 'accepted' && !EditStatus" class="btn form-button green" type="button">Complete Order</button>
+              <button *ngIf="order.status == 'accepted' && !EditStatus && order.products.length != 0" class="btn form-button green" type="button" (click)="completeStatus()">Complete Order</button>
               <div style=" height: fit-content; display: flex; justify-content: space-between; flex-direction: row; margin-top: 5%;  align-items: center; width: 100%; flex-wrap:wrap;">
-                <button *ngIf="EditStatus" class="btn form-button red" type="button" (click)="editToggle()">Cancel</button>
-                <button *ngIf="EditStatus" class="btn form-button" type="button">Update Order</button>
+                <button *ngIf="EditStatus && order.status != 'rejected'" class="btn form-button" type="button">Update Order</button>
+                <button *ngIf="EditStatus && order.status != 'rejected'" class="btn form-button red" type="button" (click)="editToggle()">Cancel</button>                
             </div>
-            </div>
+            </div>            
           </div>
+
+          <!-- Add Items -->
+          <div class="card mb-4" *ngIf="add">
+            <div class="card-body">
+              <div class="mb-4">
+                <h3 class="h4 font-weight-bold text-theme" style="margin-left: 1.3%;">Add New Item</h3>
+              </div>
+              <form #form="ngForm" style="margin: 0% 1.1%;">
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                    <!-- Form Group (first name)-->
+                    <div class="col-md-6" style="margin-bottom: 10px;">
+                        <label class="medium mb-3 bold" for="inputFirstName">Item name</label>
+                        <input class="form-control" id="inputFirstName" type="text" name="itemname" placeholder="Enter item name" required [(ngModel)]="addForm.item_name">
+                    </div>
+                    <!-- Form Group (last name)-->
+                    <div class="col-md-6">
+                        <label class="medium mb-3 bold" for="inputLastName">Item Brand</label>
+                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter item brand" name="brand" required [(ngModel)]="addForm.brand">
+                    </div>
+                </div>
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                  <!-- Form Group (first name)-->
+                  <div class="col-md-6" style="margin-bottom: 10px;">
+                      <label class="medium mb-3 bold" for="inputFirstName">Item Price</label>
+                      <input class="form-control" id="inputFirstName" type="text" name="price" placeholder="Enter item price" required [(ngModel)]="addForm.product_total">
+                  </div>
+              </div>
+              </form>
+              <div style=" height: fit-content; display: flex; justify-content: space-between; flex-direction: row; margin-top: 5%;  align-items: center; width: 100%; flex-wrap:wrap;">
+                <button  class="btn form-button" type="button" (click)="addItem()">Update Order</button>
+                <button  class="btn form-button red" type="button" (click)="addItemToggle()">Cancel</button>                
+            </div>
+            </div>            
+          </div>
+
+
+          <!-- Edit Items -->
+          <div class="card mb-4" *ngIf="editItem">
+            <div class="card-body">
+              <div class="mb-4">
+                <h3 class="h4 font-weight-bold text-theme" style="margin-left: 1.3%;">Edit Item</h3>
+              </div>
+              <form #form="ngForm" style="margin: 0% 1.1%;">
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                    <!-- Form Group (first name)-->
+                    <div class="col-md-6" style="margin-bottom: 10px;">
+                        <label class="medium mb-3 bold" for="inputFirstName">Item name</label>
+                        <input class="form-control" id="inputFirstName" type="text" name="itemname" placeholder="Enter item name" required >
+                    </div>
+                    <!-- Form Group (last name)-->
+                    <div class="col-md-6">
+                        <label class="medium mb-3 bold" for="inputLastName">Product Price</label>
+                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter price" name="price" required >
+                    </div>
+                </div>
+              </form>
+              <div style=" height: fit-content; display: flex; justify-content: space-between; flex-direction: row; margin-top: 5%;  align-items: center; width: 100%; flex-wrap:wrap;">
+                <button  class="btn form-button" type="button">Update Order</button>
+                <button  class="btn form-button red" type="button" (click)="editItemMethodFalse()" (click)="editToggle()">Cancel</button>                
+            </div>
+            </div>            
+          </div>
+
+
+
+
+
           <!-- Customer -->
           <div class="card mb-4">
             <div class="card-body">
@@ -115,8 +172,8 @@
                 <h3 class="h4 font-weight-bold text-theme" style="margin-left: 1.3%;">Prescription</h3>
               </div>
               <img style="width: 100%;" [src]="order.url">
-              <div style=" height: fit-content; display: flex; justify-content: left; flex-direction: row; margin-top: 5%;  width: 100%;">
-                <button class="btn form-button" type="button">Approve Order</button>
+              <div style=" height: fit-content; display: flex; justify-content: left; flex-direction: row; margin-top: 5%;  width: 100%;" *ngIf="order.status == 'pending'">
+                <button class="btn form-button" type="button" (click)="acceptStatus()">Approve Order</button>
             </div> 
             </div>
           </div>
@@ -130,15 +187,18 @@
         </div>
         <div class="row" style="margin: 0.1%;">
           <div class="col-lg-6">
-              <select class="form-control" required name="customer-access" >
+              <select class="form-control" required name="customer-access" name="reject" [(ngModel)]="reason_reject">
                   <option value="" disabled selected>Select reason</option>
                   <option value="unclear prescription image">Unclear Prescription Image</option>
                   <option value="suspicious prescription">Suspicious Prescription</option>
                   <option value="requested drugs unavailable">Requested Drugs Unavailable</option>
               </select><br>
-              <button style="margin-left: 0px;" class="btn form-button red" type="button">Reject Order</button>
+              <button style="margin-left: 0px;" class="btn form-button red" type="button" (click)="rejectStatus()" [ngClass]="{'disabled': !reject }">Reject Order</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
+    <app-success *ngIf="postSuccess" [success]="postSuccessMessage" (Event)="closeWindow($event)"></app-success>
+    <app-error *ngIf="postError" [error]="postErrorMessage" (Event)="closeWindow($event)"></app-error>
 </div>
