@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'customer',   component: CustomerComponent },
   { path: 'employee',   component: EmployeeComponent },
   { path: 'customer/orders',   component: CustomerOrdersComponent },
-  { path: 'customer/order/id',   component: CustomerOrderDetailsComponent },
+  { path: 'customer/order/:id',   component: CustomerOrderDetailsComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   //{ path: '**', component: PageNotFoundComponent }
 ]

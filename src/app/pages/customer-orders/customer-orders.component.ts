@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class CustomerOrdersComponent {
 
+  constructor(){}
+
+  component= "all";
+  searchedOrderId : string = "";
+
+  showAll(){
+    this.component  = "all";
+    // box.classList.add('bg-yellow', 'second-class', 'third-class');
+
+    // ✅ Remove class
+  // box.classList.remove('bg-yellow');
+  }
+
 }

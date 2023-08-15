@@ -18,6 +18,8 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { SuccessComponent } from './components/success/success.component';
 import { ErrorComponent } from './components/error/error.component';
+import { AllOrdersComponent } from './components/all-orders/all-orders.component';
+import { OrderfilterPipe } from './pipes/orderfilter/orderfilter.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ErrorComponent } from './components/error/error.component';
     EmployeeComponent,
     CustomerComponent,
     SuccessComponent,
-    ErrorComponent
+    ErrorComponent,
+    AllOrdersComponent,
+    OrderfilterPipe
   ],
   imports: [
     BrowserModule,
