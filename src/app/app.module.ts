@@ -20,7 +20,6 @@ import { SuccessComponent } from './components/success/success.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AllOrdersComponent } from './components/all-orders/all-orders.component';
 import { OrderfilterPipe } from './pipes/orderfilter/orderfilter.pipe';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -45,8 +44,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    NoopAnimationsModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
