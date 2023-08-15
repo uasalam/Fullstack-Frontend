@@ -10,6 +10,7 @@ import { OrderService } from 'src/app/services/order/order.service';
   templateUrl: './customer-order-details.component.html',
   styleUrls: ['./customer-order-details.component.css']
 })
+
 export class CustomerOrderDetailsComponent implements OnInit {
 
   constructor(private location: Location,  private activatedRoute : ActivatedRoute , private customerService: CustomerService , private orderService: OrderService){}
@@ -40,7 +41,7 @@ export class CustomerOrderDetailsComponent implements OnInit {
 
   customer: any = [];
   order_id : any = ""
-  noEditStatus = false;
+  EditStatus = false;
 
 
   ngOnInit(){
@@ -55,10 +56,10 @@ export class CustomerOrderDetailsComponent implements OnInit {
     this.orderService.getById({id: order_id}).subscribe(result => {
       console.log(result)
       if(result.status == 'completed' || result.status == 'rejected' || result.status == 'cancelled'){
-        this.noEditStatus = true;
+        this.EditStatus = true;
       }
       else {
-        this.noEditStatus = false;
+        this.EditStatus = false;
       }
       this.order = result;
       customer_email = result.customer_email;
@@ -68,6 +69,10 @@ export class CustomerOrderDetailsComponent implements OnInit {
     })
   }
 
+
+  editToggle(){
+    this.EditStatus = !this.EditStatus;
+  }
 
 
   back(){

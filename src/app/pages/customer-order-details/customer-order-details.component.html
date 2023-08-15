@@ -24,7 +24,7 @@
                   <span *ngIf="order.status == 'rejected'" class="badge rounded-pill" style="color: white; background-color: #da4932; padding: 8px 10px; margin: 5px 0px;">Rejected</span>
                   <span *ngIf="order.status == 'cancelled'" class="badge rounded-pill" style="color: white; background-color: #da4932; padding: 8px 10px; margin: 5px 0px;">Cancelled</span>
                 </div>
-                <div class="d-flex">                  
+                <!-- <div class="d-flex">                  
                   <div class="dropdown">
                     <button class="btn btn-link p-0 text-muted" type="button" data-bs-toggle="dropdown">
                       <i class="bi bi-three-dots-vertical"></i>
@@ -34,32 +34,37 @@
                       <li><a class="dropdown-item" href="#"><i class="bi bi-printer"></i> Print</a></li>
                     </ul>
                   </div>
-                </div>
-              </div>
+                </div> -->
+                <label *ngIf="!EditStatus" for="file_input_id" class="edit-link" (click)="editToggle()">Edit Order</label>
+              </div>              
+              <label style="margin-left: 1.5%;" *ngIf="!EditStatus" for="file_input_id" class="edit-link">Add Item</label>
               <table class="table table-borderless">
                 <tbody>
                   <tr>
                     <td>
                       <div class="d-flex mb-2">
                         <div class="flex-lg-grow-1 ms-3">
-                          <h6 class="small mb-0"><a href="#" class="text-reset">Wireless Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
+                          <h6 class="small mb-0"><a class="text-reset">Wireless Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
                           <span class="small">Color: Black</span>
                         </div>
                       </div>
                     </td>
-                    <td>1</td>
+                    <td></td>
                     <td class="text-end" style="text-align: right;">Rs.70</td>
+                    <td *ngIf="EditStatus">
+                      <img style="height: 15px; cursor: pointer;" class="quantity-img" src="../../../assets/edit.svg">
+                    </td>
                   </tr>
                   <tr>
                     <td>
                       <div class="d-flex mb-2">
                         <div class="flex-lg-grow-1 ms-3">
-                          <h6 class="small mb-0"><a href="#" class="text-reset">Smartwatch IP68 Waterproof GPS and Bluetooth Support</a></h6>
+                          <h6 class="small mb-0"><a class="text-reset">Smartwatch IP68 Waterproof GPS and Bluetooth Support</a></h6>
                           <span class="small">Color: White</span>
                         </div>
                       </div>
                     </td>
-                    <td>1</td>
+                    <td></td>
                     <td class="text-end" style="text-align: right;">Rs.70</td>
                   </tr>
                 </tbody>
@@ -70,6 +75,12 @@
                   </tr>
                 </tfoot>
               </table>
+              <button *ngIf="order.status == 'pending' && !EditStatus" class="btn form-button" type="button">Accept Order</button>
+              <button *ngIf="order.status == 'accepted' && !EditStatus" class="btn form-button green" type="button">Complete Order</button>
+              <div style=" height: fit-content; display: flex; justify-content: space-between; flex-direction: row; margin-top: 5%;  align-items: center; width: 100%; flex-wrap:wrap;">
+                <button *ngIf="EditStatus" class="btn form-button red" type="button" (click)="editToggle()">Cancel</button>
+                <button *ngIf="EditStatus" class="btn form-button" type="button">Update Order</button>
+            </div>
             </div>
           </div>
           <!-- Customer -->
@@ -119,17 +130,13 @@
         </div>
         <div class="row" style="margin: 0.1%;">
           <div class="col-lg-6">
-            <h3 class="h6"><strong>Customer</strong></h3>
-            <p>Name: {{customer.first_name}}<br>       
-            <abbr title="Phone"></abbr> Email : {{customer.email}}<br>           
-            <abbr title="Phone"></abbr> Contact: {{customer.mobile_no}}
-          </div>
-          <div class="col-lg-6">
-            <h3 class="h6"><strong>Address</strong></h3>                  
-            <address>
-              
-              {{customer.address}}<br>                    
-            </address>
+              <select class="form-control" required name="customer-access" >
+                  <option value="" disabled selected>Select reason</option>
+                  <option value="unclear prescription image">Unclear Prescription Image</option>
+                  <option value="suspicious prescription">Suspicious Prescription</option>
+                  <option value="requested drugs unavailable">Requested Drugs Unavailable</option>
+              </select><br>
+              <button style="margin-left: 0px;" class="btn form-button red" type="button">Reject Order</button>
           </div>
         </div>
       </div>

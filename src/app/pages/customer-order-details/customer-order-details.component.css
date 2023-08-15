@@ -50,3 +50,39 @@ a {
   .form-button:hover {
     background-color: #0d6afa;
   }
+
+  .green {
+    background-color: #60c060;
+    border: 1px solid #60c060;
+    transition: 0.3s;
+  }
+
+  .green:hover{
+    background-color: #33a133;
+  }
+
+  .red{
+    background-color: #da4932;
+    border: 1px solid #da4932;
+    transition: 0.3ss;
+  }
+
+  .red:hover{
+    background-color: #f0381c;
+  }
+
+
+  /* Add Items */
+
+  .edit-link {
+  text-align: center;
+  height: fit-content;
+  color: #0038FF;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.edit-link:hover{
+  color: #00229b;
+  text-decoration: underline;
+}
