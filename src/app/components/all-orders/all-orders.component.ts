@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Order } from 'src/app/interfaces/order';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { EmployeeService } from 'src/app/services/employee/employee.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { OrderService } from 'src/app/services/order/order.service';
 })
 export class AllOrdersComponent {
 
-  constructor(private orderService: OrderService, private authService: AuthService){}
+  constructor(private orderService: OrderService, private authService: AuthService, private employeeService: EmployeeService){}
 
   @Input() orderId = "";
 
@@ -24,6 +25,12 @@ export class AllOrdersComponent {
       email = dataSub.email;
 
       if((type != null || type != undefined) && type == "customer"){
+        this.orderService.getOrders({email: email}).subscribe((result : any)=> {
+          console.log(result)
+          this.orders = result;
+        })
+      }
+      else{
         this.orderService.getOrders({email: email}).subscribe((result : any)=> {
           console.log(result)
           this.orders = result;
