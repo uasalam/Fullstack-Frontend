@@ -4,6 +4,6 @@ This Project is built for a node JS backend to handle customer-user interactions
 
 # Technologies and API
 
-AWS SDK - For Image Storage
-MongoDB - For Data Storing
-Socket IO - For customer-user chatting
+* AWS SDK - For Image Storage
+* MongoDB - For Data Storing
+* Socket IO - For customer-user chatting
