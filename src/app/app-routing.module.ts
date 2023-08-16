@@ -11,21 +11,29 @@ import { CustomerComponent } from './pages/customer/customer.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { RoomComponentComponent } from './pages/room-component/room-component.component';
 import { ChatComponentComponent } from './pages/chat-component/chat-component.component';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { AdminGuard } from './guards/admin/admin.guard';
+import { StaffGuard } from './guards/staff/staff.guard';
+import { AllGuard } from './guards/all/all.guard';
+import { CustomerGuard } from './guards/customer/customer.guard';
+import { NoGuard } from './guards/no/no.guard';
 
 const routes: Routes = [
   { path: 'home',   component: HomeComponent },
-  { path: 'login',   component: LoginComponent },
-  { path: 'registration',   component: RegistrationComponent },
-  { path: 'place-order',   component: PlaceOrderComponent },
-  { path: 'profile',   component: ProfileComponent },
-  { path: 'customer',   component: CustomerComponent },
-  { path: 'employee',   component: EmployeeComponent },
-  { path: 'customer/orders',   component: CustomerOrdersComponent },
-  { path: 'customer/orders/:id',   component: CustomerOrderDetailsComponent },
-  { path: 'room',   component: RoomComponentComponent },
-  { path: 'room/:id',   component: ChatComponentComponent },
+  { path: 'login',   component: LoginComponent , canActivate: [NoGuard] },
+  { path: 'registration',   component: RegistrationComponent , canActivate: [NoGuard] },
+  { path: 'place-order',   component: PlaceOrderComponent , canActivate: [CustomerGuard] },
+  { path: 'profile',   component: ProfileComponent , canActivate: [AllGuard] },
+  { path: 'customer',   component: CustomerComponent , canActivate: [AdminGuard , StaffGuard] },
+  { path: 'employee',   component: EmployeeComponent , canActivate: [AdminGuard] },
+  { path: 'customer/orders',   component: CustomerOrdersComponent , canActivate: [AllGuard]},
+  { path: 'customer/orders/:id',   component: CustomerOrderDetailsComponent , canActivate: [AllGuard] },
+  { path: 'room',   component: RoomComponentComponent , canActivate: [AllGuard] },
+  { path: 'room/:id',   component: ChatComponentComponent , canActivate: [AllGuard] },
+  { path: 'unauthorized',   component: UnauthorizedComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
-  //{ path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PagenotfoundComponent }
 ]
 
 @NgModule({
