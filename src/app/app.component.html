@@ -20,7 +20,7 @@
             <li *ngIf="isStaff || isCustomer" routerLink="/customer/orders" routerLinkActive="navbar-links-active"><a>Orders</a></li>
             <li *ngIf="isStaff" routerLink="/employee" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}" ><a>Employee</a></li>
             <li *ngIf="isStaff" routerLink="/customer" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}" ><a>Customer</a></li>
-            <li  routerLink="/chat"><a>Live Chat</a></li>
+            <li  routerLink="/room" routerLinkActive="navbar-links-active"><a>Live Chat</a></li>
             <li *ngIf="isStaff || isCustomer" routerLink="/profile" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}"><a>Profile</a></li>
             <li *ngIf="!isStaff && !isCustomer" routerLink="/login" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}"><a>Login</a></li>
           </ul>

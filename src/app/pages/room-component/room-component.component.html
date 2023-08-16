@@ -1,0 +1,23 @@
+<div style="margin: 100px 20px 20px 20px;">
+    <div id="chat-applicaton" style="border-radius: 20px; box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);"><br>
+      <h2 style="font-weight: 700; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; margin-bottom: 20px;">Live Chat Assistance</h2>
+      <div id="chat-window" *ngIf="Type == 'customer'" style="padding: 20px;">
+        <form #form="ngForm" style="text-align: center;">
+            <p style="text-align: center; margin: auto; width: 60%; font-size: 18px; font-weight: 500;">Initiate Live Assistance with Pharmacy Staff.</p>
+  
+            <p style="text-align: center; margin: auto; margin-top: 20px; width: 80%;"><strong>Instructions:</strong> Click Start Chat and Wait up to 5 minutes for a pharmacy staff member to Join and Initiate the Conversation. Once the conversation is over Pharmacy Personal will delete the chat.</p>
+            <p style="text-align: center; margin: auto; margin-top: 5px; width: 80%;"><strong>Note:</strong> If Pharmacy Staff has Joined and you fail to respond within 5 minutes the live chat will be deleted.</p>
+            <p style="text-align: center; margin: auto; margin-top: 15px; margin-bottom: 25px; width: 80%;">If a Staff member fails to respond within 5 - 15 minutes, Please email your Issue <a class="mail" href="mailto:adalanane111@gmail.com">Here</a>.</p>
+           <button type="button" id="send" (click)="startChat()">Start Chat</button><br><br>
+           <button *ngIf="chatTrue" type="button" id="send" (click)="chatNow()">Join Room</button><br><br>
+        </form>
+    </div>
+    <div *ngIf="Type != 'customer' &&  Type == 'staff'">
+        <p style="text-align: center; margin: auto; margin-top: 20px; width: 80%;"><strong>Instructions:</strong> Please Wait Until a Customer initiates a chat conversation. A link will appear below when a customer intiates a chat.</p><br>
+      <div style="text-align: center; margin: auto; margin-bottom: 40px;" *ngIf="rooms">
+        <div *ngFor="let key of keys">
+          <li *ngIf="key != 'Customer name' && key != 'Customer undefined'" style="text-decoration: none; color: rgb(3, 182, 182);" [routerLink]="['/room', key ]"><a>Customer {{key}}</a></li>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -9,6 +9,8 @@ import { CustomerOrdersComponent } from './pages/customer-orders/customer-orders
 import { CustomerOrderDetailsComponent } from './pages/customer-order-details/customer-order-details.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
+import { RoomComponentComponent } from './pages/room-component/room-component.component';
+import { ChatComponentComponent } from './pages/chat-component/chat-component.component';
 
 const routes: Routes = [
   { path: 'home',   component: HomeComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'employee',   component: EmployeeComponent },
   { path: 'customer/orders',   component: CustomerOrdersComponent },
   { path: 'customer/orders/:id',   component: CustomerOrderDetailsComponent },
+  { path: 'room',   component: RoomComponentComponent },
+  { path: 'room/:id',   component: ChatComponentComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   //{ path: '**', component: PageNotFoundComponent }
 ]

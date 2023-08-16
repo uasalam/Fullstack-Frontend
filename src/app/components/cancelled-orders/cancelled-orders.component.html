@@ -1,4 +1,4 @@
-<div class="row">     
+<div class="row" *ngIf="cancelledArray.length != 0">     
     <div class="col-lg-12" style="display: flex; flex-wrap: wrap; flex-direction: row; margin-right: 5px;">
       <!-- Order Card -->
       <div class="card mb-4" style="width: 48%; min-width: 350px; margin-right: 2%;" *ngFor="let order of cancelledArray | orderfilter:orderId">
@@ -36,3 +36,5 @@
       </div>
   </div>
   </div>
+
+  <app-no-orders *ngIf="cancelledArray.length == 0"></app-no-orders>

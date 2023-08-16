@@ -34,6 +34,7 @@ export class SocketService {
   }
 
   newRoom(body: any){
+    console.log(body)
     return this.http.post(this.url+'/room', body);
   }
 

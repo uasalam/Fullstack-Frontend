@@ -1,0 +1,17 @@
+<div id="chat-applicaton">
+    <h2 style="font-weight: 700; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; margin-bottom: 20px;">Live Chat Assistance</h2>
+    <div id="chat-window">
+      <div id="output" *ngFor="let data of output">
+          <p><strong>{{data.handle}} : </strong>{{data.message}}</p>
+      </div>
+      <div id="feedback"><p>{{feedback}}</p></div>
+    </div>
+    <input id="handle" readonly type="text" [(ngModel)]="userName" placeholder="Type Name" />
+    <input id="message" type="text" [(ngModel)]="message" placeholder="Message" autocomplete="off"
+      (keypress)="messageTyping()"/>
+      <div style="text-align: center;">
+        <button type="button" id="send" style="cursor: pointer;" (click)="sendMessage()">Send</button><br><br>
+        <button *ngIf="Type == 'staff'" type="button" class="send2" (click)="deleteChat()">Delete Chat</button><br><br>
+        <button type="button" class="send2" (click)="back()">Go Back</button><br><br>
+      </div>
+  </div>

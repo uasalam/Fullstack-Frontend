@@ -26,6 +26,9 @@ import { AcceptedOrdersComponent } from './components/accepted-orders/accepted-o
 import { CompletedOrdersComponent } from './components/completed-orders/completed-orders.component';
 import { RejectedOrdersComponent } from './components/rejected-orders/rejected-orders.component';
 import { CancelledOrdersComponent } from './components/cancelled-orders/cancelled-orders.component';
+import { RoomComponentComponent } from './pages/room-component/room-component.component';
+import { ChatComponentComponent } from './pages/chat-component/chat-component.component';
+import { NoOrdersComponent } from './components/no-orders/no-orders.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { CancelledOrdersComponent } from './components/cancelled-orders/cancelle
     AcceptedOrdersComponent,
     CompletedOrdersComponent,
     RejectedOrdersComponent,
-    CancelledOrdersComponent
+    CancelledOrdersComponent,
+    RoomComponentComponent,
+    ChatComponentComponent,
+    NoOrdersComponent
   ],
   imports: [
     BrowserModule,
