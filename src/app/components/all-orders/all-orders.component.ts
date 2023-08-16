@@ -17,6 +17,7 @@ export class AllOrdersComponent implements OnInit {
 
   orders : any = [];
   type = "";
+  noOrders = "false";
 
   ngOnInit(): void {
     let type;
@@ -27,15 +28,19 @@ export class AllOrdersComponent implements OnInit {
       this.type = dataSub.type;
 
       if((type != null || type != undefined) && type == "customer"){
-        this.orderService.getOrders({email: email}).subscribe((result : any)=> {
-          console.log(result)
+        this.orderService.getOrders({email: email}).subscribe((result : any)=> {     
           this.orders = result;
+          if(this.orders.length == 0){
+            this.noOrders = "true";
+          } 
         })
       }
       else{
-        this.orderService.getAllOrders({email: email}).subscribe((result : any)=> {
-          console.log(result)
+        this.orderService.getAllOrders({email: email}).subscribe((result : any)=> {           
           this.orders = result;
+          if(this.orders.length == 0){
+            this.noOrders = "true";
+          } 
         })
       }
     })    

@@ -1,7 +1,5 @@
-import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Order } from 'src/app/interfaces/order';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { OrderService } from 'src/app/services/order/order.service';
@@ -14,13 +12,14 @@ import { OrderService } from 'src/app/services/order/order.service';
 
 export class CustomerOrderDetailsComponent implements OnInit {
 
-  constructor(private location: Location,  private activatedRoute : ActivatedRoute , private customerService: CustomerService , private orderService: OrderService, private authService: AuthService){}
+  constructor(private router: Router,  private activatedRoute : ActivatedRoute , private customerService: CustomerService , private orderService: OrderService, private authService: AuthService){}
 
   postSuccess = false;
   postSuccessMessage = "";
   postError = false;
   postErrorMessage = "";
   close = "";
+  @Input() orderDetail = "detail";
 
 
   orginalOrder: any = {
@@ -391,7 +390,7 @@ export class CustomerOrderDetailsComponent implements OnInit {
 
 
   back(){
-    this.location.back()
+    this.router.navigateByUrl('/customer/orders')
   }
 
   messages(): void{

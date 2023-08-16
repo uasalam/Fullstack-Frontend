@@ -16,6 +16,7 @@ export class CancelledOrdersComponent implements OnInit {
 
   cancelledArray : any = [];
   type = "";
+  noOrders = "false";
 
   ngOnInit(): void {
     let type;
@@ -34,6 +35,9 @@ export class CancelledOrdersComponent implements OnInit {
               this.cancelledArray.push(allOrders[i]);
             }
           }
+          if(this.cancelledArray.length == 0){
+            this.noOrders = "true";
+          } 
         })
       }
       else{
@@ -45,6 +49,9 @@ export class CancelledOrdersComponent implements OnInit {
               this.cancelledArray.push(allOrders[i]);
             }
           }
+          if(this.cancelledArray.length == 0){
+            this.noOrders = "true";
+          } 
         })
       }
     })    

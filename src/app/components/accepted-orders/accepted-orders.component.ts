@@ -16,6 +16,7 @@ export class AcceptedOrdersComponent {
 
   acceptedArray : any = [];
   type = "";
+  noOrders = "false";
 
   ngOnInit(): void {
     let type;
@@ -34,17 +35,26 @@ export class AcceptedOrdersComponent {
               this.acceptedArray.push(allOrders[i]);
             }
           }
+          if(this.acceptedArray.length == 0){
+            this.noOrders = "true";
+          } 
         })
       }
       else{
         this.orderService.getAllOrders({email: email}).subscribe((result : any)=> {
           let allOrders : any = [];
           allOrders = result;
+          if(allOrders.length == 0){
+            this.noOrders = "true";
+          } 
           for(let i = 0; i < allOrders.length; i++) {
             if(allOrders[i].status == 'pending'){
               this.acceptedArray.push(allOrders[i]);
             }
           }
+          if(this.acceptedArray.length == 0){
+            this.noOrders = "true";
+          } 
         })
       }
     })    

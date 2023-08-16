@@ -38,6 +38,7 @@
                 <label *ngIf="!EditStatus && order.status=='accepted' && order.products.length != 0 && userType != 'customer'" for="file_input_id" class="edit-link" (click)="editToggle()">Edit Order</label>
               </div>              
               <label style="margin-left: 1.5%;" *ngIf="!EditStatus && order.status=='accepted' && userType != 'customer'" for="file_input_id" class="edit-link" (click)="addItemToggle()">Add Item</label>
+              <app-no-orders *ngIf="order.products.length == 0" [detail]="orderDetail"></app-no-orders>
               <table class="table table-borderless" *ngIf="order.products.length != 0">
                 <tbody>
                   <tr *ngFor="let item of order.products">

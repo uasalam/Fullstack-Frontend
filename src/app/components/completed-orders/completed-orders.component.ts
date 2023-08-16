@@ -16,6 +16,7 @@ export class CompletedOrdersComponent implements OnInit {
 
   completedArray : any = [];
   type = "";
+  noOrders = "false";
 
   ngOnInit(): void {
     let type;
@@ -27,13 +28,16 @@ export class CompletedOrdersComponent implements OnInit {
 
       if((type != null || type != undefined) && type == "customer"){
         this.orderService.getOrders({email: email}).subscribe((result : any)=> {
-          let allOrders : any = [];
+          let allOrders : any = [];          
           allOrders = result;
           for(let i = 0; i < allOrders.length; i++) {
             if(allOrders[i].status == 'completed'){
               this.completedArray.push(allOrders[i]);
             }
           }
+          if(this.completedArray.length == 0){
+            this.noOrders = "true";
+          } 
         })
       }
       else{
@@ -45,6 +49,9 @@ export class CompletedOrdersComponent implements OnInit {
               this.completedArray.push(allOrders[i]);
             }
           }
+          if(this.completedArray.length == 0){
+            this.noOrders = "true";
+          } 
         })
       }
     })    

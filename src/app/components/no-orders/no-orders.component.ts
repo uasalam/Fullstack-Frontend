@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-no-orders',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./no-orders.component.css']
 })
 export class NoOrdersComponent {
+
+  @Input() detail = "";
 
 }

@@ -17,15 +17,14 @@ import { AdminGuard } from './guards/admin/admin.guard';
 import { StaffGuard } from './guards/staff/staff.guard';
 import { AllGuard } from './guards/all/all.guard';
 import { CustomerGuard } from './guards/customer/customer.guard';
-import { NoGuard } from './guards/no/no.guard';
 
 const routes: Routes = [
   { path: 'home',   component: HomeComponent },
-  { path: 'login',   component: LoginComponent , canActivate: [NoGuard] },
-  { path: 'registration',   component: RegistrationComponent , canActivate: [NoGuard] },
+  { path: 'login',   component: LoginComponent },
+  { path: 'registration',   component: RegistrationComponent },
   { path: 'place-order',   component: PlaceOrderComponent , canActivate: [CustomerGuard] },
   { path: 'profile',   component: ProfileComponent , canActivate: [AllGuard] },
-  { path: 'customer',   component: CustomerComponent , canActivate: [AdminGuard , StaffGuard] },
+  { path: 'customer',   component: CustomerComponent , canActivate: [StaffGuard] },
   { path: 'employee',   component: EmployeeComponent , canActivate: [AdminGuard] },
   { path: 'customer/orders',   component: CustomerOrdersComponent , canActivate: [AllGuard]},
   { path: 'customer/orders/:id',   component: CustomerOrderDetailsComponent , canActivate: [AllGuard] },

@@ -17,6 +17,7 @@ export class RejectedOrdersComponent implements OnInit {
 
   rejectedArray : any = [];
   type = "";
+  noOrders = "false";
 
   ngOnInit(): void {
     let type;
@@ -35,6 +36,9 @@ export class RejectedOrdersComponent implements OnInit {
               this.rejectedArray.push(allOrders[i]);
             }
           }
+          if(this.rejectedArray.length == 0){
+            this.noOrders = "true";
+          } 
         })
       }
       else{
@@ -46,6 +50,9 @@ export class RejectedOrdersComponent implements OnInit {
               this.rejectedArray.push(allOrders[i]);
             }
           }
+          if(this.rejectedArray.length == 0){
+            this.noOrders = "true";
+          } 
         })
       }
     })    

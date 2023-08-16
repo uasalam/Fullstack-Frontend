@@ -15,6 +15,7 @@ export class PendingOrdersComponent implements OnInit {
 
   pendingArray : any = [];
   type = "";
+  noOrders = "false";
 
   ngOnInit(): void {
     let type;
@@ -33,6 +34,9 @@ export class PendingOrdersComponent implements OnInit {
               this.pendingArray.push(allOrders[i]);
             }
           }
+          if(this.pendingArray.length == 0){
+            this.noOrders = "true";
+          } 
         })
       }
       else{
@@ -44,6 +48,9 @@ export class PendingOrdersComponent implements OnInit {
               this.pendingArray.push(allOrders[i]);
             }
           }
+          if(this.pendingArray.length == 0){
+            this.noOrders = "true";
+          } 
         })
       }
     })    
