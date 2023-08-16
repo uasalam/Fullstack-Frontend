@@ -9,8 +9,7 @@ import { io, Socket } from 'socket.io-client';
 export class SocketService {
 
   socket: Socket;
-  //readonly url: string = 'https://cmc-dle-backend.onrender.com/';
-  readonly url: string = 'http://localhost:5500';
+  readonly url: string = 'https://pharmacy-backend-1u90.onrender.com';
 
 
   constructor(private http: HttpClient) {

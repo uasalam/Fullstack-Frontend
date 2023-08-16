@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Order } from 'src/app/interfaces/order';
 
 
-const URL = 'http://localhost:5500/';
+const URL = 'https://pharmacy-backend-1u90.onrender.com/';
 const PATH = 'api/order/';
 
 @Injectable({
