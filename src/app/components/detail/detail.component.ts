@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
@@ -9,7 +9,7 @@ import { EmployeeService } from 'src/app/services/employee/employee.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent {
+export class DetailComponent implements OnInit{
 
   postErrorPicture = false;
   postErrorMessagePicture = "";
@@ -46,26 +46,26 @@ export class DetailComponent {
     this.postSuccess = false;
   }
 
-  constructor(private authService: AuthService, private customerService: CustomerService, private employeeService: EmployeeService){
-    this.authService.currentData.subscribe(dataSub => {
+  constructor(private authService: AuthService, private customerService: CustomerService, private employeeService: EmployeeService){}
+
+  ngOnInit(): void {
+    this.authService.currentData.subscribe((dataSub : any) => {
       this.loggedInUser = dataSub;
-      console.log(dataSub.type)
       if(dataSub.email != null || dataSub.email != undefined && dataSub.type === "customer"){
         this.customerService.getCustomerId({email : dataSub.email}).subscribe((result : any) => {
           this.user = result;
-          console.log(result)
           return
         })
       }
       if(dataSub.email != null || dataSub.email != undefined && (dataSub.type === "staff" || dataSub.type === "user" || dataSub.type === "admin")){
         this.employeeService.getEmployeeId({email : dataSub.email}).subscribe((result : any) => {
           this.user = result;
-          console.log(result)
           return
         })
       }
     })
   }
+
 
   saveProfile(form : NgForm){
     if(form.valid) {
@@ -127,7 +127,6 @@ export class DetailComponent {
     console.log('error : ',errorResponse);
     this.postError = true;
     this.postErrorMessage = errorResponse;
-    console.log(this.postErrorMessage)
   }
 
   toggleEdit(){

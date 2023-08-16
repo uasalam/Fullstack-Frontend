@@ -20,4 +20,12 @@ export class CustomerOrdersComponent {
   // box.classList.remove('bg-yellow');
   }
 
+  showPending(){
+    this.component  = "pending";
+    // box.classList.add('bg-yellow', 'second-class', 'third-class');
+
+    // ✅ Remove class
+  // box.classList.remove('bg-yellow');
+  }
+
 }

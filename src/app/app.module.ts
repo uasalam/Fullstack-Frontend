@@ -20,6 +20,8 @@ import { SuccessComponent } from './components/success/success.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AllOrdersComponent } from './components/all-orders/all-orders.component';
 import { OrderfilterPipe } from './pipes/orderfilter/orderfilter.pipe';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { PendingOrdersComponent } from './components/pending-orders/pending-orders.component';
 
 @NgModule({
   declarations: [
@@ -38,13 +40,15 @@ import { OrderfilterPipe } from './pipes/orderfilter/orderfilter.pipe';
     SuccessComponent,
     ErrorComponent,
     AllOrdersComponent,
-    OrderfilterPipe
+    OrderfilterPipe,
+    PendingOrdersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

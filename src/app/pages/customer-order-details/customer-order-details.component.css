@@ -74,6 +74,16 @@ a {
     transition: 0.3ss;
   }
 
+  .red-remove{
+    color: #da4932;
+    margin-right: 5px;
+    transition: 0.3s;
+  }
+
+  .red-remove:hover{
+    color: #f0381c;
+  }
+
   .red:hover{
     background-color: #f0381c;
   }

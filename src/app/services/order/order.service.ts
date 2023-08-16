@@ -21,6 +21,11 @@ export class OrderService {
     return this.http.post(URL+PATH+'get', order)
   }
 
+  getAllOrders(order : any) {
+    return this.http.post(URL+PATH+'get/all', order)
+  }
+
+
   getById(id : any) {
     return this.http.post<any>(URL+PATH+'get/id', id)
   }

@@ -3,10 +3,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
 
-// const httpOptions = {
-//   headers: new HttpHeaders({ 'Access-Control-Allow-Origin': 'https://cms-dle.netlify.app/' })
-// }
-
 @Injectable({
   providedIn: 'root'
 })

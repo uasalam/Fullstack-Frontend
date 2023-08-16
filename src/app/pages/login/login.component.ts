@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { LoginUser } from 'src/app/interfaces/login';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private router: Router){}
 
   originalLoginForm: LoginUser = {
     email: "",
@@ -64,6 +65,7 @@ export class LoginComponent {
           this.postSuccess = true;
           this.postSuccessMessage = "Login Successful!";
           this.loginForm = this.originalLoginForm;
+          this.router.navigate(['/home']);
         }
       });  
     }

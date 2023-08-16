@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Customer } from 'src/app/interfaces/customer';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -10,7 +10,7 @@ import { EmployeeService } from 'src/app/services/employee/employee.service';
   templateUrl: './security.component.html',
   styleUrls: ['./security.component.css']
 })
-export class SecurityComponent {
+export class SecurityComponent implements OnInit {
 
   postSuccess = false;
   postSuccessMessage = "";
@@ -36,7 +36,9 @@ export class SecurityComponent {
     this.postSuccess = false;
   }
 
-  constructor(private authService: AuthService, private customerService: CustomerService, private employeeService:EmployeeService){
+  constructor(private authService: AuthService, private customerService: CustomerService, private employeeService:EmployeeService){}
+
+  ngOnInit(): void {
     this.authService.currentData.subscribe(dataSub => {
       this.loggedInUser = dataSub;
       this.user.type = dataSub.type;
@@ -48,7 +50,6 @@ export class SecurityComponent {
   saveNewPassword(form : NgForm){
     if(form.valid) {
       this.messages();
-      console.log(this.user)
       if(this.user.new_password != this.user.retype_password){
         this.onHttpError("Please enter the same new password for both fields!")
         return;
@@ -59,7 +60,6 @@ export class SecurityComponent {
             const status = Object.getOwnPropertyDescriptor(result, 'Status');
             const error = Object.getOwnPropertyDescriptor(result, 'Error');
 
-            console.log(status?.value+"g")
             if(status?.value == "400") {
               this.onHttpError(error?.value)
             }
@@ -73,6 +73,7 @@ export class SecurityComponent {
             this.postSuccess = true;
             this.postSuccessMessage = "Password Updated Successfully!";
             this.edit = false;
+            this.user = this.orginalUser;
           }
         });
       }
@@ -81,8 +82,6 @@ export class SecurityComponent {
           if(Object.hasOwn(result,'Error')){
             const status = Object.getOwnPropertyDescriptor(result, 'Status');
             const error = Object.getOwnPropertyDescriptor(result, 'Error');
-
-            console.log(status?.value+"g")
             if(status?.value == "400") {
               this.onHttpError(error?.value)
             }
@@ -97,6 +96,7 @@ export class SecurityComponent {
             this.postSuccess = true;
             this.postSuccessMessage = "Password Updated Successfully!";
             this.edit = false;
+            this.user = this.orginalUser;
           }
         });
       }  

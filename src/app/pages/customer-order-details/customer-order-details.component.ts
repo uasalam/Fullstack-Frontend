@@ -79,10 +79,20 @@ export class CustomerOrderDetailsComponent implements OnInit {
 
   addForm: any = {...this.orginalAddForm}
 
+  orginalEditForm: any = {
+    id: "",
+    item_name: "GG",
+    brand: "",
+    product_total: ""
+  }
+
+  editForm: any = {...this.orginalEditForm}
+
 
   addItem(){
     if(this.addForm.item_name == "" || this.addForm.product_total == "" || this.addForm.brand == ""){
       this.onHttpError('Please fill all the fields for the new item!')
+      return
     }
     if(this.order.products.length == 0){
       this.addForm.id = "1";
@@ -125,7 +135,103 @@ export class CustomerOrderDetailsComponent implements OnInit {
   }
 
   editExisting(id : string){
-    console.log(id)
+    this.editItem = true;
+    for (let i = 0; i < this.order.products.length; i++) {
+      if(this.order.products[i].id == id){
+        this.editForm = this.order.products[i];
+      }
+    }
+    if(this.editForm.item_name == "" || this.editForm.product_total == "" || this.editForm.brand == ""){
+      this.onHttpError('Please fill all the fields for the edit item!')
+      return
+    }
+  }
+
+
+  editUpdate(id : any){
+    if(this.editForm.item_name == "" || this.editForm.product_total == "" || this.editForm.brand == ""){
+      this.onHttpError('Please fill all the fields for the edit item!')
+      return
+    }
+    let tot = 0;
+    for (let i = 0; i < this.order.products.length; i++) {
+      if(this.order.products[i].id == id){
+        this.order.products[i] = this.editForm;
+      }
+      tot = tot + Number(this.order.products[i].product_total);
+    }
+    this.order.total = tot;
+
+    this.orderService.updateOrder(this.order).subscribe((result : any) => {
+      if(Object.hasOwn(result,'Error')){
+        const status = Object.getOwnPropertyDescriptor(result, 'Status');
+        const error = Object.getOwnPropertyDescriptor(result, 'Error');
+
+        if(status?.value == "400") {
+          this.onHttpError(error?.value)
+        }
+        else {
+          this.onHttpError("Something went Wrong with the Server try again later,.. If the Issue Persists please Contact Support!");
+        }
+      }
+      else {
+        if(result.message == "success"){
+          this.postSuccess = true;
+          this.postSuccessMessage = "Order updated Successfully!"
+          this.editItem = !this.editForm;
+          this.EditStatus = !this.EditStatus;
+          this.editForm = this.orginalEditForm;
+        }
+        else{
+          this.onHttpError("Something went wrong try again Later!")
+          this.editItem = !this.editForm;
+          this.EditStatus = !this.EditStatus;
+          this.editForm = this.orginalEditForm;
+        }        
+      }
+    })
+  }
+
+
+  deleteItem(id : any){
+    let order = this.order
+    let total = Number(order.total);
+    for(let i = 0; i< order.products.length; i++){
+      if(order.products[i].id == id){
+        total = total - Number(order.products[i].product_total)
+        order.products.splice(i, 1);
+      }
+      order.total = total.toString();
+    }
+
+    this.orderService.updateOrder(order).subscribe((result : any) => {
+      if(Object.hasOwn(result,'Error')){
+        const status = Object.getOwnPropertyDescriptor(result, 'Status');
+        const error = Object.getOwnPropertyDescriptor(result, 'Error');
+
+        if(status?.value == "400") {
+          this.onHttpError(error?.value)
+        }
+        else {
+          this.onHttpError("Something went Wrong with the Server try again later,.. If the Issue Persists please Contact Support!");
+        }
+      }
+      else {
+        if(result.message == "success"){
+          this.postSuccess = true;
+          this.postSuccessMessage = "Order updated Successfully!"
+          this.editItem = !this.editForm;
+          this.EditStatus = !this.EditStatus;
+          this.editForm = this.orginalEditForm;
+        }
+        else{
+          this.onHttpError("Something went wrong try again Later!")
+          this.editItem = !this.editForm;
+          this.EditStatus = !this.EditStatus;
+          this.editForm = this.orginalEditForm;
+        }        
+      }
+    })
   }
 
 
@@ -227,11 +333,11 @@ export class CustomerOrderDetailsComponent implements OnInit {
     this.EditStatus = !this.EditStatus;
   }
 
-  editItemMethod(){
-    this.editItem = true;
-  }
-
   editItemMethodFalse(){
+    if(this.editForm.item_name == "" || this.editForm.product_total == "" || this.editForm.brand == ""){
+      this.onHttpError('Please fill all the fields for the edit item!')
+      return
+    }
     this.editItem = false;
     this.EditStatus = false;
   }

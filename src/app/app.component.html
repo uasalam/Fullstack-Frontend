@@ -1,20 +1,3 @@
-<!-- <div style="width: 100%; height: 8vh; background-color: rgb(215, 240, 240); display: flex; flex-direction: row;">
-  <div style="width: 10%; height: 100%; display: flex; justify-content: left; background-color: blueviolet;">
-    <img style="height: 100%; margin:auto ;" src="../assets/med.svg">
-  </div>
-  <div style="width: 90%; height: 100%; display: flex; flex-direction: row; justify-content: right; background-color: rgb(127, 111, 141);">
-    <ul style="display: flex; flex-direction: row;">
-      <li style="width: 10%;"><a>Home</a></li>
-      <li style="width: 10%;"><a>Home</a></li>
-      <li style="width: 10%;"><a>Home</a></li>
-      <li style="width: 10%;"><a>Home</a></li>
-      <li style="width: 10%;"><a>Home</a></li>
-    </ul>
-  </div>
-</div> -->
-<!-- #019fe0 -->
-
-
 <div class="parent-container">
   <div id="container-new">
     <header>
@@ -32,15 +15,14 @@
 
         <div class="navbar-links" [ngClass]="{'active': isShowDiv}">
           <ul>
-            <li routerLink="/home"><a>Home</a></li>
-            <li routerLink="/place-order"><a>Place Order</a></li>
-            <li routerLink="/customer/orders"><a>Orders</a></li>
-            <li routerLink="/employee"><a>Employee</a></li>
-            <li routerLink="/customer"><a>Customer</a></li>
-            <li routerLink="/chat"><a>Live Chat</a></li>
-            <li routerLink="/profile"><a>Profile</a></li>
-            <!-- <li><a>Contact Us</a></li> -->
-            <li routerLink="/login"><a>Login</a></li>
+            <li routerLink="/home" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}"><a>Home</a></li>
+            <li *ngIf="isCustomer" routerLink="/place-order" routerLink="/place-order" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}"><a>Place Order</a></li>
+            <li *ngIf="isStaff || isCustomer" routerLink="/customer/orders" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}"><a>Orders</a></li>
+            <li *ngIf="isStaff" routerLink="/employee" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}" ><a>Employee</a></li>
+            <li *ngIf="isStaff" routerLink="/customer" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}" ><a>Customer</a></li>
+            <li  routerLink="/chat"><a>Live Chat</a></li>
+            <li *ngIf="isStaff || isCustomer" routerLink="/profile" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}"><a>Profile</a></li>
+            <li *ngIf="!isStaff && !isCustomer" routerLink="/login" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}"><a>Login</a></li>
           </ul>
         </div>
       </nav>
@@ -55,7 +37,7 @@
         <div class=”footer-content”>
           <h3>Angel Life Pharmacists</h3>
           <p class="footer-p">Always laugh when you can. It is a cheap medicine</p>
-          <div style="margin-bottom: 0.5%;">
+          <div style="margin-bottom: 0.5%;" *ngIf="isStaff || isCustomer">
             <a class="link link-logout" (click)="logout()">Logout</a>
           </div>
         </div>  

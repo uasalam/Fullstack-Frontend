@@ -26,13 +26,13 @@ export class RegistrationComponent {
     email: "",
     mobile_no: "",
     address: "",
-    access: "",
+    access: "open",
     type:"customer",
-    url: "https://canteen-management-system-nsbm.s3.ap-south-1.amazonaws.com/profile+pic.jpg",
+    url: "https://pharmacy-system.s3.ap-south-1.amazonaws.com/profile+pic.jpg",
     password: ""
   }
 
-  confirmPassword: String = "thenura123";
+  confirmPassword: String = "";
 
   customerForm : Customer = {...this.orginalCustomerForm};
 

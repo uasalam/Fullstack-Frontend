@@ -12,15 +12,24 @@
                 <div class="card-header">Profile Picture</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="./../../../assets/profile pic.jpg" alt="">
-                    <!-- Profile picture upload button-->
-                    <button class="btn btn-theme" type="button">Upload new image</button>
+                    <div class="profile-div">
+                        <div class="inner-profile-div">
+                            <img *ngIf="user.url == null && user.url == undefined && user.url == ''" id="profile" class="profile-img" src="../../../assets/profile pic.jpg">
+                            <img *ngIf="user.url != null && user.url != undefined && user.url != ''" id="profile" class="profile-img" [src]="user.url">
+                        </div>
+                    </div>                    
+                    <!-- Profile picture upload button--><br>
+                    <label for="file_input_id" class="edit-link">Edit Profile Picture</label>
+                    <input type="file" id="file_input_id" class="edit-link" accept="image/png, image/jpg, image/jpeg" (change)="selectImage($event)">
+                    <!-- <button class="btn btn-theme" type="button">Upload new image</button> -->
                 </div>
             </div>
         </div>
         <div class="col-xl-8">
             <app-detail *ngIf="component === 'detail'"></app-detail>
             <app-security *ngIf="component === 'security'"></app-security>
-        </div>
+        </div>        
     </div>
+    <app-success *ngIf="postSuccess" [success]="postSuccessMessage" (Event)="closeWindow($event)"></app-success>
+    <app-error *ngIf="postError" [error]="postErrorMessage" (Event)="closeWindow($event)"></app-error>
 </div>

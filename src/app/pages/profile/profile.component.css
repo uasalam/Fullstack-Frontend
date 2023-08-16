@@ -93,3 +93,47 @@
 .bold {
     font-weight: 500;
 }
+
+/* profile */
+
+.profile-div {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 20px;
+  }
+  
+  .inner-profile-div {
+    height: 180px;
+    width: 180px;
+  }
+
+.profile-img {
+    height: 100%;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 100px;
+  }
+
+
+
+/* Edit Link */
+
+.edit-link {
+    text-align: center;
+    height: fit-content;
+    color: #0038FF;
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid #0038FF;
+  }
+
+  .edit-link:hover {
+    color: #001aff;
+    border: 1px solid #001aff;
+  }
+  
+  #file_input_id{
+    display:none;
+  }

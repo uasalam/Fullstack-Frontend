@@ -44,14 +44,14 @@
                     <td>
                       <div class="d-flex mb-2">
                         <div class="flex-lg-grow-1 ms-3">
-                          <h6 class="small mb-0"><a class="text-reset" style="font-size: 17px;">{{item.item_name}}</a></h6>
+                          <h6 class="small mb-0"><a class="text-reset" style="font-size: 18px;">{{item.item_name}}</a></h6>
                           <span class="small">{{item.brand | titlecase}}</span>
                         </div>
                       </div>
                     </td>
                     <td></td>
                     <td class="text-end" style="text-align: right;">Rs.{{item.product_total}}</td>
-                    <td *ngIf="EditStatus && order.status != 'rejected'" (click)="editItemMethod()">
+                    <td *ngIf="EditStatus && order.status != 'rejected'">
                       <img style="height: 15px; cursor: pointer;" class="quantity-img" (click)="editExisting(item.id)" src="../../../assets/edit.svg">
                     </td>
                   </tr>
@@ -64,8 +64,7 @@
                 </tfoot>
               </table>
               <button *ngIf="order.status == 'accepted' && !EditStatus && order.products.length != 0" class="btn form-button green" type="button" (click)="completeStatus()">Complete Order</button>
-              <div style=" height: fit-content; display: flex; justify-content: space-between; flex-direction: row; margin-top: 5%;  align-items: center; width: 100%; flex-wrap:wrap;">
-                <button *ngIf="EditStatus && order.status != 'rejected'" class="btn form-button" type="button">Update Order</button>
+              <div style=" height: fit-content; display: flex; justify-content: left; flex-direction: row; margin-top: 5%;  align-items: center; width: 100%; flex-wrap:wrap;">
                 <button *ngIf="EditStatus && order.status != 'rejected'" class="btn form-button red" type="button" (click)="editToggle()">Cancel</button>                
             </div>
             </div>            
@@ -114,23 +113,35 @@
               <div class="mb-4">
                 <h3 class="h4 font-weight-bold text-theme" style="margin-left: 1.3%;">Edit Item</h3>
               </div>
+              <div style="display: flex; justify-content: right; margin: 5px; cursor: pointer;" (click)="deleteItem(editForm.id)">
+                <p class="red-remove">Remove Item</p>
+                <img style="height: 18px; width: 18px;" src="../../assets/remove.svg">
+              </div>
               <form #form="ngForm" style="margin: 0% 1.1%;">
                 <!-- Form Row-->
                 <div class="row gx-3 mb-3">
                     <!-- Form Group (first name)-->
                     <div class="col-md-6" style="margin-bottom: 10px;">
                         <label class="medium mb-3 bold" for="inputFirstName">Item name</label>
-                        <input class="form-control" id="inputFirstName" type="text" name="itemname" placeholder="Enter item name" required >
+                        <input class="form-control" id="inputFirstName" type="text" name="edititemname" placeholder="Enter item name" required [(ngModel)]="editForm.item_name">
                     </div>
                     <!-- Form Group (last name)-->
                     <div class="col-md-6">
-                        <label class="medium mb-3 bold" for="inputLastName">Product Price</label>
-                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter price" name="price" required >
+                        <label class="medium mb-3 bold" for="inputLastName">Item Brand</label>
+                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter item brand" name="editbrand" required [(ngModel)]="editForm.brand">
                     </div>
                 </div>
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                  <!-- Form Group (first name)-->
+                  <div class="col-md-6" style="margin-bottom: 10px;">
+                      <label class="medium mb-3 bold" for="inputFirstName">Item Price</label>
+                      <input class="form-control" id="inputFirstName" type="text" name="editprice" placeholder="Enter item price" required [(ngModel)]="editForm.product_total">
+                  </div>
+              </div>
               </form>
               <div style=" height: fit-content; display: flex; justify-content: space-between; flex-direction: row; margin-top: 5%;  align-items: center; width: 100%; flex-wrap:wrap;">
-                <button  class="btn form-button" type="button">Update Order</button>
+                <button  class="btn form-button" type="button" (click)="editUpdate(editForm.id)">Update Order</button>
                 <button  class="btn form-button red" type="button" (click)="editItemMethodFalse()" (click)="editToggle()">Cancel</button>                
             </div>
             </div>            

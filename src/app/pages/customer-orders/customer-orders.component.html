@@ -4,7 +4,7 @@
       <!-- Order Navigation -->
       <nav class="nav nav-borders" style="margin-top: 3%;">
         <a class="nav-link ms-0" [ngClass]="{'active': component === 'all'}" id="detail" (click)="showAll()">All Orders</a>
-        <a class="nav-link ms-0" >Pending Orders</a>
+        <a class="nav-link ms-0" [ngClass]="{'active': component === 'pending'}" id="detail" (click)="showPending()">Pending Orders</a>
         <a class="nav-link ms-0" >Accepted Orders</a>
         <a class="nav-link ms-0" >Completed Orders</a>
         <a class="nav-link ms-0" >Cancelled Orders</a>
@@ -15,6 +15,7 @@
         <input class="search" type="text" name="search-customer" placeholder="Search Order Id" required [(ngModel)]="searchedOrderId">
         <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
       </form>
-      <app-all-orders [orderId]="searchedOrderId"></app-all-orders>      
+      <app-all-orders *ngIf="component == 'all' " [orderId]="searchedOrderId"></app-all-orders>
+      <app-all-orders *ngIf="component == 'pending' " [orderId]="searchedOrderId"></app-all-orders>     
   </div>
 </div>

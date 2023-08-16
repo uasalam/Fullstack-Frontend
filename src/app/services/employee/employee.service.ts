@@ -24,6 +24,10 @@ export class EmployeeService {
     return this.http.post<any>(URL+PATH+'update/password', Password)
   }
 
+  updatePicture(pic : any ) {
+    return this.http.post<any>(URL+PATH+'update/picture', pic)
+  }
+
   getEmployeeId(Employee_Id : any) {
     return this.http.post<any>(URL+PATH+'get/id', Employee_Id)
   }

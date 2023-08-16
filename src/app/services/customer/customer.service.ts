@@ -29,6 +29,10 @@ export class CustomerService {
     return this.http.post<any>(URL+PATH+'update/password', Password)
   }
 
+  updatePicture(pic : any ) {
+    return this.http.post<any>(URL+PATH+'update/picture', pic)
+  }
+
   getCustomerId(Customer_Id : any) {
     return this.http.post<any>(URL+PATH+'get/id', Customer_Id)
   }
