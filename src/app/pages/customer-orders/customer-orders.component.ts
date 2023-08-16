@@ -22,10 +22,22 @@ export class CustomerOrdersComponent {
 
   showPending(){
     this.component  = "pending";
-    // box.classList.add('bg-yellow', 'second-class', 'third-class');
+  }
 
-    // ✅ Remove class
-  // box.classList.remove('bg-yellow');
+  showAccepted(){
+    this.component  = "accepted";
+  }
+
+  showCompleted(){
+    this.component  = "completed";
+  }
+
+  showRejected(){
+    this.component  = "rejected";
+  }
+
+  showCancelled(){
+    this.component  = "cancelled";
   }
 
 }

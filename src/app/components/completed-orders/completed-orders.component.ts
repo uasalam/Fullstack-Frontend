@@ -3,17 +3,18 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
-  selector: 'app-pending-orders',
-  templateUrl: './pending-orders.component.html',
-  styleUrls: ['./pending-orders.component.css']
+  selector: 'app-completed-orders',
+  templateUrl: './completed-orders.component.html',
+  styleUrls: ['./completed-orders.component.css']
 })
-export class PendingOrdersComponent implements OnInit {
+export class CompletedOrdersComponent implements OnInit {
+
   constructor(private orderService: OrderService, private authService: AuthService){}
 
   
   @Input() orderId = "";
 
-  pendingArray : any = [];
+  completedArray : any = [];
   type = "";
 
   ngOnInit(): void {
@@ -29,8 +30,8 @@ export class PendingOrdersComponent implements OnInit {
           let allOrders : any = [];
           allOrders = result;
           for(let i = 0; i < allOrders.length; i++) {
-            if(allOrders[i].status == 'pending'){
-              this.pendingArray.push(allOrders[i]);
+            if(allOrders[i].status == 'completed'){
+              this.completedArray.push(allOrders[i]);
             }
           }
         })
@@ -40,12 +41,13 @@ export class PendingOrdersComponent implements OnInit {
           let allOrders : any = [];
           allOrders = result;
           for(let i = 0; i < allOrders.length; i++) {
-            if(allOrders[i].status == 'pending'){
-              this.pendingArray.push(allOrders[i]);
+            if(allOrders[i].status == 'completed'){
+              this.completedArray.push(allOrders[i]);
             }
           }
         })
       }
     })    
   }
+
 }

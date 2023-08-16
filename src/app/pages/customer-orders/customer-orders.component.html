@@ -5,9 +5,10 @@
       <nav class="nav nav-borders" style="margin-top: 3%;">
         <a class="nav-link ms-0" [ngClass]="{'active': component === 'all'}" id="detail" (click)="showAll()">All Orders</a>
         <a class="nav-link ms-0" [ngClass]="{'active': component === 'pending'}" id="detail" (click)="showPending()">Pending Orders</a>
-        <a class="nav-link ms-0" >Accepted Orders</a>
-        <a class="nav-link ms-0" >Completed Orders</a>
-        <a class="nav-link ms-0" >Cancelled Orders</a>
+        <a class="nav-link ms-0" [ngClass]="{'active': component === 'accepted'}" (click)="showAccepted()">Accepted Orders</a>
+        <a class="nav-link ms-0" [ngClass]="{'active': component === 'completed'}" (click)="showCompleted()">Completed Orders</a>
+        <a class="nav-link ms-0" [ngClass]="{'active': component === 'rejected'}" (click)="showRejected()">Rejected Orders</a>
+        <a class="nav-link ms-0" [ngClass]="{'active': component === 'cancelled'}" (click)="showCancelled()">Cancelled Orders</a>
       </nav>
       <hr class="mt-0 mb-4">
       <!-- Main content --> 
@@ -16,6 +17,10 @@
         <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
       </form>
       <app-all-orders *ngIf="component == 'all' " [orderId]="searchedOrderId"></app-all-orders>
-      <app-all-orders *ngIf="component == 'pending' " [orderId]="searchedOrderId"></app-all-orders>     
+      <app-pending-orders *ngIf="component == 'pending' " [orderId]="searchedOrderId"></app-pending-orders>     
+      <app-accepted-orders *ngIf="component == 'accepted' " [orderId]="searchedOrderId"></app-accepted-orders>  
+      <app-completed-orders *ngIf="component == 'completed' " [orderId]="searchedOrderId"></app-completed-orders>  
+      <app-rejected-orders *ngIf="component == 'rejected' " [orderId]="searchedOrderId"></app-rejected-orders>
+      <app-cancelled-orders *ngIf="component == 'cancelled' " [orderId]="searchedOrderId"></app-cancelled-orders>  
   </div>
 </div>

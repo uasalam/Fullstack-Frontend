@@ -17,7 +17,7 @@
           <ul>
             <li routerLink="/home" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}"><a>Home</a></li>
             <li *ngIf="isCustomer" routerLink="/place-order" routerLink="/place-order" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}"><a>Place Order</a></li>
-            <li *ngIf="isStaff || isCustomer" routerLink="/customer/orders" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}"><a>Orders</a></li>
+            <li *ngIf="isStaff || isCustomer" routerLink="/customer/orders" routerLinkActive="navbar-links-active"><a>Orders</a></li>
             <li *ngIf="isStaff" routerLink="/employee" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}" ><a>Employee</a></li>
             <li *ngIf="isStaff" routerLink="/customer" routerLinkActive="navbar-links-active" [routerLinkActiveOptions]="{exact:true}" ><a>Customer</a></li>
             <li  routerLink="/chat"><a>Live Chat</a></li>

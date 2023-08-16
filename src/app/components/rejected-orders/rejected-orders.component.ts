@@ -3,17 +3,19 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
-  selector: 'app-pending-orders',
-  templateUrl: './pending-orders.component.html',
-  styleUrls: ['./pending-orders.component.css']
+  selector: 'app-rejected-orders',
+  templateUrl: './rejected-orders.component.html',
+  styleUrls: ['./rejected-orders.component.css']
 })
-export class PendingOrdersComponent implements OnInit {
+export class RejectedOrdersComponent implements OnInit {
+
+
   constructor(private orderService: OrderService, private authService: AuthService){}
 
   
   @Input() orderId = "";
 
-  pendingArray : any = [];
+  rejectedArray : any = [];
   type = "";
 
   ngOnInit(): void {
@@ -29,8 +31,8 @@ export class PendingOrdersComponent implements OnInit {
           let allOrders : any = [];
           allOrders = result;
           for(let i = 0; i < allOrders.length; i++) {
-            if(allOrders[i].status == 'pending'){
-              this.pendingArray.push(allOrders[i]);
+            if(allOrders[i].status == 'rejected'){
+              this.rejectedArray.push(allOrders[i]);
             }
           }
         })
@@ -40,8 +42,8 @@ export class PendingOrdersComponent implements OnInit {
           let allOrders : any = [];
           allOrders = result;
           for(let i = 0; i < allOrders.length; i++) {
-            if(allOrders[i].status == 'pending'){
-              this.pendingArray.push(allOrders[i]);
+            if(allOrders[i].status == 'rejected'){
+              this.rejectedArray.push(allOrders[i]);
             }
           }
         })

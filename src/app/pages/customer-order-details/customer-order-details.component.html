@@ -35,9 +35,9 @@
                     </ul>
                   </div>
                 </div> -->
-                <label *ngIf="!EditStatus && order.status=='accepted' && order.products.length != 0" for="file_input_id" class="edit-link" (click)="editToggle()">Edit Order</label>
+                <label *ngIf="!EditStatus && order.status=='accepted' && order.products.length != 0 && userType != 'customer'" for="file_input_id" class="edit-link" (click)="editToggle()">Edit Order</label>
               </div>              
-              <label style="margin-left: 1.5%;" *ngIf="!EditStatus && order.status=='accepted'" for="file_input_id" class="edit-link" (click)="addItemToggle()">Add Item</label>
+              <label style="margin-left: 1.5%;" *ngIf="!EditStatus && order.status=='accepted' && userType != 'customer'" for="file_input_id" class="edit-link" (click)="addItemToggle()">Add Item</label>
               <table class="table table-borderless" *ngIf="order.products.length != 0">
                 <tbody>
                   <tr *ngFor="let item of order.products">
@@ -63,7 +63,7 @@
                   </tr>
                 </tfoot>
               </table>
-              <button *ngIf="order.status == 'accepted' && !EditStatus && order.products.length != 0" class="btn form-button green" type="button" (click)="completeStatus()">Complete Order</button>
+              <button *ngIf="order.status == 'accepted' && !EditStatus && order.products.length != 0 && userType != 'customer'" class="btn form-button green" type="button" (click)="completeStatus()">Complete Order</button>
               <div style=" height: fit-content; display: flex; justify-content: left; flex-direction: row; margin-top: 5%;  align-items: center; width: 100%; flex-wrap:wrap;">
                 <button *ngIf="EditStatus && order.status != 'rejected'" class="btn form-button red" type="button" (click)="editToggle()">Cancel</button>                
             </div>
@@ -161,8 +161,9 @@
                 <div class="col-lg-6">
                   <h3 class="h6"><strong>Customer</strong></h3>
                   <p>Name: {{customer.first_name}}<br>       
-                  <abbr title="Phone"></abbr> Email : {{customer.email}}<br>           
-                  <abbr title="Phone"></abbr> Contact: {{customer.mobile_no}}
+                  <abbr title="email"></abbr> Email : {{customer.email}}<br>           
+                  <abbr title="mobile"></abbr> Contact: {{customer.mobile_no}}<br>
+                  <abbr title="payment"></abbr> Payment Type: {{order.payment_type | titlecase}}
                 </div>
                 <div class="col-lg-6">
                   <h3 class="h6"><strong>Address</strong></h3>                  
@@ -183,15 +184,15 @@
                 <h3 class="h4 font-weight-bold text-theme" style="margin-left: 1.3%;">Prescription</h3>
               </div>
               <img style="width: 100%;" [src]="order.url">
-              <div style=" height: fit-content; display: flex; justify-content: left; flex-direction: row; margin-top: 5%;  width: 100%;" *ngIf="order.status == 'pending'">
+              <div style=" height: fit-content; display: flex; justify-content: left; flex-direction: row; margin-top: 5%;  width: 100%;" *ngIf="order.status == 'pending' && userType != 'customer'">
                 <button class="btn form-button" type="button" (click)="acceptStatus()">Approve Order</button>
             </div> 
             </div>
           </div>
         </div>
     </div>
-    <!-- Customer -->
-    <div class="card mb-4">
+    <!-- reject reason -->
+    <div class="card mb-4" *ngIf="userType != 'customer' && (order.status == 'pending' || order.status == 'accepted')">
       <div class="card-body">
         <div class="mb-4">
           <h3 class="h4 font-weight-bold text-theme" style="margin-left: 1.3%;">Reject Order</h3>
@@ -205,6 +206,63 @@
                   <option value="requested drugs unavailable">Requested Drugs Unavailable</option>
               </select><br>
               <button style="margin-left: 0px;" class="btn form-button red" type="button" (click)="rejectStatus()" [ngClass]="{'disabled': !reject }">Reject Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- rejected reason-->
+    <div class="card mb-4" *ngIf="order.status == 'rejected'">
+      <div class="card-body">
+        <div class="mb-4">
+          <h3 class="h4 font-weight-bold text-theme" style="margin-left: 1.3%;">Order Rejected Reason</h3>
+        </div>
+        <div class="row" style="margin: 0.1%;">
+          <div class="col-lg-6">
+              <select class="form-control" readonly required name="customer-access" name="reject" [(ngModel)]="order.rejected_reasons">
+                  <option value="" disabled selected>Select reason</option>
+                  <option value="unclear prescription image">Unclear Prescription Image</option>
+                  <option value="suspicious prescription">Suspicious Prescription</option>
+                  <option value="requested drugs unavailable">Requested Drugs Unavailable</option>
+              </select><br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- cancel -->
+    <div class="card mb-4" *ngIf="userType == 'customer' && order.status == 'pending'">
+      <div class="card-body">
+        <div class="mb-4">
+          <h3 class="h4 font-weight-bold text-theme" style="margin-left: 1.3%;">Cancel Order</h3>
+        </div>
+        <div class="row" style="margin: 0.1%;">
+          <div class="col-lg-6">
+              <select class="form-control" required name="customer-access" name="reject" [(ngModel)]="reason_reject">
+                  <option value="" disabled selected>Select reason</option>
+                  <option value="unclear prescription image">Invalid Prescription</option>
+                  <option value="suspicious prescription">Invalid Details</option>
+                  <option value="n/a">N/A</option>
+              </select><br>
+              <button style="margin-left: 0px;" class="btn form-button red" type="button" (click)="cancelStatus()" [ngClass]="{'disabled': !reject }">Cancel Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- cancelled reason -->
+    <div class="card mb-4" *ngIf="order.status == 'cancelled'">
+      <div class="card-body">
+        <div class="mb-4">
+          <h3 class="h4 font-weight-bold text-theme" style="margin-left: 1.3%;">Order Cancelled Reason</h3>
+        </div>
+        <div class="row" style="margin: 0.1%;">
+          <div class="col-lg-6">
+              <select readonly class="form-control" required name="customer-access" name="reject" [(ngModel)]="order.rejected_reasons">
+                  <option value="" disabled selected>Select reason</option>
+                  <option value="unclear prescription image">Invalid Prescription</option>
+                  <option value="suspicious prescription">Invalid Details</option>
+                  <option value="n/a">N/A</option>
+              </select><br>
           </div>
         </div>
       </div>

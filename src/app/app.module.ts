@@ -22,6 +22,10 @@ import { AllOrdersComponent } from './components/all-orders/all-orders.component
 import { OrderfilterPipe } from './pipes/orderfilter/orderfilter.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PendingOrdersComponent } from './components/pending-orders/pending-orders.component';
+import { AcceptedOrdersComponent } from './components/accepted-orders/accepted-orders.component';
+import { CompletedOrdersComponent } from './components/completed-orders/completed-orders.component';
+import { RejectedOrdersComponent } from './components/rejected-orders/rejected-orders.component';
+import { CancelledOrdersComponent } from './components/cancelled-orders/cancelled-orders.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { PendingOrdersComponent } from './components/pending-orders/pending-orde
     ErrorComponent,
     AllOrdersComponent,
     OrderfilterPipe,
-    PendingOrdersComponent
+    PendingOrdersComponent,
+    AcceptedOrdersComponent,
+    CompletedOrdersComponent,
+    RejectedOrdersComponent,
+    CancelledOrdersComponent
   ],
   imports: [
     BrowserModule,

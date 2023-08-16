@@ -1,19 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
-  selector: 'app-pending-orders',
-  templateUrl: './pending-orders.component.html',
-  styleUrls: ['./pending-orders.component.css']
+  selector: 'app-accepted-orders',
+  templateUrl: './accepted-orders.component.html',
+  styleUrls: ['./accepted-orders.component.css']
 })
-export class PendingOrdersComponent implements OnInit {
+export class AcceptedOrdersComponent {
+
   constructor(private orderService: OrderService, private authService: AuthService){}
 
   
   @Input() orderId = "";
 
-  pendingArray : any = [];
+  acceptedArray : any = [];
   type = "";
 
   ngOnInit(): void {
@@ -29,8 +30,8 @@ export class PendingOrdersComponent implements OnInit {
           let allOrders : any = [];
           allOrders = result;
           for(let i = 0; i < allOrders.length; i++) {
-            if(allOrders[i].status == 'pending'){
-              this.pendingArray.push(allOrders[i]);
+            if(allOrders[i].status == 'accepted'){
+              this.acceptedArray.push(allOrders[i]);
             }
           }
         })
@@ -41,7 +42,7 @@ export class PendingOrdersComponent implements OnInit {
           allOrders = result;
           for(let i = 0; i < allOrders.length; i++) {
             if(allOrders[i].status == 'pending'){
-              this.pendingArray.push(allOrders[i]);
+              this.acceptedArray.push(allOrders[i]);
             }
           }
         })

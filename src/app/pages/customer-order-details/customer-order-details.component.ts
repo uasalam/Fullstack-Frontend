@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from 'src/app/interfaces/order';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
@@ -13,7 +14,7 @@ import { OrderService } from 'src/app/services/order/order.service';
 
 export class CustomerOrderDetailsComponent implements OnInit {
 
-  constructor(private location: Location,  private activatedRoute : ActivatedRoute , private customerService: CustomerService , private orderService: OrderService){}
+  constructor(private location: Location,  private activatedRoute : ActivatedRoute , private customerService: CustomerService , private orderService: OrderService, private authService: AuthService){}
 
   postSuccess = false;
   postSuccessMessage = "";
@@ -46,6 +47,7 @@ export class CustomerOrderDetailsComponent implements OnInit {
   add = false;
   reason_reject = "";
   reject = false;
+  userType = "";
 
 
   ngOnInit(){
@@ -55,6 +57,10 @@ export class CustomerOrderDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe(parameter => {
       this.order_id = parameter['id'];
       order_id = parameter['id']
+    })
+
+    this.authService.currentData.subscribe(dataSub=>{
+      this.userType = dataSub.type;
     })
 
     this.orderService.getById({id: order_id}).subscribe(result => {
@@ -297,11 +303,12 @@ export class CustomerOrderDetailsComponent implements OnInit {
 
   rejectStatus(){
     this.messages();
-    if(this.reason_reject === ""){
+    if(this.reason_reject == ""){
+      this.onHttpError("Please Select a Reason for Rejection or Cancellation")
       return;
     }
     let status = "rejected";
-    this.orderService.updateStatus({id: this.order_id , status : status, rejected_reason : this.reason_reject}).subscribe(order => {
+    this.orderService.updateRejectStatus({id: this.order_id , status : status, rejected_reasons : this.reason_reject}).subscribe(order => {
       if(Object.hasOwn(order,'Error')){
         const status = Object.getOwnPropertyDescriptor(order, 'Status');
         const error = Object.getOwnPropertyDescriptor(order, 'Error');
@@ -318,6 +325,42 @@ export class CustomerOrderDetailsComponent implements OnInit {
           this.postSuccess = true;
           this.postSuccessMessage = "Order updated Successfully!"
           this.order.status = "rejected";
+          this.reject = false;
+        }
+        else{
+          this.onHttpError("Something went wrong try again Later!")
+        }
+        
+      }
+    })
+  }
+
+
+
+  cancelStatus(){
+    this.messages();
+    if(this.reason_reject == ""){
+      this.onHttpError("Please Select a Reason for Rejection or Cancellation")
+      return;
+    }
+    let status = "cancelled";
+    this.orderService.updateRejectStatus({id: this.order_id , status : status, rejected_reasons : this.reason_reject}).subscribe(order => {
+      if(Object.hasOwn(order,'Error')){
+        const status = Object.getOwnPropertyDescriptor(order, 'Status');
+        const error = Object.getOwnPropertyDescriptor(order, 'Error');
+
+        if(status?.value == "400") {
+          this.onHttpError(error?.value)
+        }
+        else {
+          this.onHttpError("Something went Wrong with the Server try again later,.. If the Issue Persists please Contact Support!");
+        }
+      }
+      else {
+        if(order.message == "success"){
+          this.postSuccess = true;
+          this.postSuccessMessage = "Order updated Successfully!"
+          this.order.status = "cancelled";
           this.reject = false;
         }
         else{
