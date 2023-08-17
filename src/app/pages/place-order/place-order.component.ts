@@ -148,6 +148,7 @@ export class PlaceOrderComponent {
               console.log(afterLastSlash);
               this.TempUrl = afterLastSlash;
               this.ImageUrl = this.backendUrl+afterLastSlash;
+              console.log(this.ImageUrl)
             }
         })
       }
