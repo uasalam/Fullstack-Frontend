@@ -97,6 +97,7 @@ export class PlaceOrderComponent {
           }
           else {
             this.onHttpError("Something went Wrong with the Server try again later,.. If the Issue Persists please Contact Support!");
+            console.log(error)
           }
         }
         else {
