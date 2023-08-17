@@ -14,7 +14,7 @@ export class OrderService {
   constructor(private http: HttpClient) {}
 
   createOrder(order : Order) {
-    return this.http.post(URL+PATH+'create', order)
+    return this.http.post(URL+PATH+'http://localhost:5500/create', order)
   }
 
   getOrders(order : any) {
