@@ -44,7 +44,7 @@ export class PlaceOrderComponent {
   originalImage: any = [];
   path = "";
   fileInput = false;
-  backendUrl = "https://pharmacy-backend-1u90.onrender.com/"
+  backendUrl = "http://localhost:5500/"
   TempUrl = "";
   ImageUrl = "";
 
