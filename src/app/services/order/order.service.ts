@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Order } from 'src/app/interfaces/order';
 
 
-const URL = 'https://pharmacy-backend-1u90.onrender.com/';
+const URL = 'http://localhost:5500/';
 const PATH = 'api/order/';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class OrderService {
   constructor(private http: HttpClient) {}
 
   createOrder(order : Order) {
-    return this.http.post('http://localhost:5500/create', order)
+    return this.http.post(URL+PATH+'create', order)
   }
 
   getOrders(order : any) {

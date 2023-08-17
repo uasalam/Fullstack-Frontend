@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Employee } from 'src/app/interfaces/employee';
 
-const URL = 'https://pharmacy-backend-1u90.onrender.com/';
+const URL = 'http://localhost:5500/';
 const PATH = 'api/employee/';
 
 @Injectable({

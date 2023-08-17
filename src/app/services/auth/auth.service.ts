@@ -38,7 +38,7 @@ export class AuthService {
 
 
   login(loginForm: any) {
-    return this.http.post<any>('https://pharmacy-backend-1u90.onrender.com/api/auth/login',loginForm).pipe(  //httpOptions not added - return this.http.post<any>('http://localhost:5500/api/auth/login/web',loginForm,httpOptions).pipe(
+    return this.http.post<any>('http://localhost:5500//api/auth/login',loginForm).pipe(  //httpOptions not added - return this.http.post<any>('http://localhost:5500/api/auth/login/web',loginForm,httpOptions).pipe(
       map((user) => {
 
         if(!Object.hasOwn(user,'Error')){
@@ -63,7 +63,7 @@ export class AuthService {
   public logOut():Observable<any> {
     localStorage.removeItem('currentData');
     this.dataSub.next(null);
-    return this.http.get<any>('https://pharmacy-backend-1u90.onrender.com/api/auth/login'); //httpOptions removoed return this.http.get<any>(URL+PATH+'logout',httpOptions);
+    return this.http.get<any>('http://localhost:5500/api/auth/login'); //httpOptions removoed return this.http.get<any>(URL+PATH+'logout',httpOptions);
 
   }
 }

@@ -88,6 +88,7 @@ export class PlaceOrderComponent {
       this.orderForm.date = (day+"/"+month+"/"+year).toString();
       this.orderForm.url = this.TempUrl;
       this.orderService.createOrder(this.orderForm).subscribe((result : any) => {
+        console.log(result)
         if(Object.hasOwn(result,'Error')){
           const status = Object.getOwnPropertyDescriptor(result, 'Status');
           const error = Object.getOwnPropertyDescriptor(result, 'Error');
