@@ -9,7 +9,7 @@ import { io, Socket } from 'socket.io-client';
 export class SocketService {
 
   socket: Socket;
-  readonly url: string = 'http://localhost:5500/';
+  readonly url: string = 'http://localhost:5500';
 
 
   constructor(private http: HttpClient) {

@@ -38,7 +38,7 @@ export class AuthService {
 
 
   login(loginForm: any) {
-    return this.http.post<any>('http://localhost:5500//api/auth/login',loginForm).pipe(  //httpOptions not added - return this.http.post<any>('http://localhost:5500/api/auth/login/web',loginForm,httpOptions).pipe(
+    return this.http.post<any>('http://localhost:5500/api/auth/login',loginForm).pipe(  //httpOptions not added - return this.http.post<any>('http://localhost:5500/api/auth/login/web',loginForm,httpOptions).pipe(
       map((user) => {
 
         if(!Object.hasOwn(user,'Error')){
